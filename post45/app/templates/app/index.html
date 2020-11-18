@@ -62,7 +62,7 @@
       <th data-data="nonficprob">nonficprob</th>
       </tr>
         </thead>
-        <tfoot>
+        <!-- <tfoot>
           <tr>
             <th>docid</th>
             <th>oldauthor</th>
@@ -92,17 +92,17 @@
               <th>juvenileprob</th>
               <th>nonficprob</th>
           </tr>
-          </tfoot>
+          </tfoot> -->
 </table>
 </div>
 </body>
 <script>
 
     $(document).ready(function() {
-      // Setup - add a text input to each footer cell
-       $('#record-table tfoot th').each( function () {
+      // Setup - add a text input to each header cell
+       $('#record-table thead th').each( function () {
            var title = $(this).text();
-           $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+           $(this).html( '<th>'+title+'<input type="text" placeholder="Search '+title+'" /></th>' );
        } );
 
     // DataTable
