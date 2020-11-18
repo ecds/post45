@@ -12,6 +12,9 @@ from htrc_features import utils
 def index(request):
     return render(request, 'app/index.html')
 
+def about(request):
+    return render(request, 'app/about.html')
+
 class RecordViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
@@ -55,7 +58,7 @@ class RecordExportCsvView(View):
                 else:
                     val = getattr(obj, field.name)
                 #row.append(str(val).encode("utf-8"))
-                row.append(str(val)) # Doing it this way removes enclosing quotes and preceding "b" 
+                row.append(str(val)) # Doing it this way removes enclosing quotes and preceding "b"
             return row
         def stream(headers, data): # Helper function to inject headers
             if headers:
