@@ -14,7 +14,17 @@
 <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<style>
+  .popover-content {
+      height: 200px;
+      overflow-y: auto;
+      white-space:pre-wrap;
+  }
+</style>
+
+
 </head>
+
 
 <body>
   <nav class="navbar navbar-default">
@@ -35,9 +45,9 @@
 <table id="record-table" class="stripe hover row-border" data-server-side="true" data-ajax="/records/?format=datatables">
   <thead>
     <tr>
-    <th data-data="docid">docid <a href="#" data-toggle="popover" title="Definition" data-content="HathiTrust volume ID. This is an item-level identifier for volumes. IDs used for pairtree storage can come in two different forms; I have provided the "clean" versions of the IDs that are legal as filenames."><i class="bi bi-question-circle"></i></a></th>
+    <th data-data="docid">docid <a href="#" data-toggle="popover" title="Definition" data-content="HathiTrust volume ID. This is an item-level identifier for volumes. IDs used for pairtree storage can come in two different forms; I have provided the 'clean' versions of the IDs that are legal as filenames."><i class="bi bi-question-circle"></i></a></th>
     <th data-data="oldauthor">oldauthor</th>
-    <th data-data="author">author <a href="#" data-toggle="popover" title="Definition" data-content="A version of the author name that has undergone some cleaning and standardization. For instance, honorifics like "Sir" and "Mrs" have been moved to the end of the name, as have parenthetical expansions of initials. "><i class="bi bi-question-circle"></i></a></th>
+    <th data-data="author">author <a href="#" data-toggle="popover" title="Definition" data-content="A version of the author name that has undergone some cleaning and standardization. For instance, honorifics like 'Sir' and 'Mrs' have been moved to the end of the name, as have parenthetical expansions of initials. "><i class="bi bi-question-circle"></i></a></th>
       <th data-data="authordate">authordate</th>
       <th data-data="title">title</th>
       <th data-data="parttitle">parttitle</th>
