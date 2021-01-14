@@ -4,13 +4,16 @@ from django.views.generic import View
 from django.http import StreamingHttpResponse
 from django.shortcuts import render
 from rest_framework import viewsets
-from .models import Record
-from .serializers import RecordSerializer
+from .models import Record, ProgramEraRecord
+from .serializers import RecordSerializer, ProgramEraRecordSerializer
 from htrc_features import utils
 
 
 def index(request):
     return render(request, 'app/index.html')
+
+def programerarecord(request):
+    return render(request, 'app/programerarecord.html')
 
 def about(request):
     return render(request, 'app/about.html')
@@ -21,12 +24,6 @@ class RecordViewSet(viewsets.ModelViewSet):
     """
     queryset = Record.objects.all().order_by('inferreddate')
     serializer_class = RecordSerializer
-
-# def htrc_download(request, docid):
-#     link = utils.download_file(htids='docid')
-#     return render(request)
-
-
 
 # https://docs.djangoproject.com/en/3.0/howto/outputting-csv/#streaming-large-csv-files
 # http://blog.aeguana.com/2015/12/12/csv-export-data-for-django-model/
@@ -71,4 +68,47 @@ class RecordExportCsvView(View):
             (writer.writerow(row) for row in stream(headers, records_qs)),
             content_type="text/csv")
         response['Content-Disposition'] = 'attachment; filename="data.tsv"'
+        return response
+
+class ProgramEraRecordViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = ProgramEraRecord.objects.all().order_by('date')
+    serializer_class = ProgramEraRecordSerializer
+
+
+class ProgramEraRecordExportCsvView(View):
+    def get(self, request, *args, **kwargs):
+        records_qs =  ProgramEraRecord.objects.all()
+        model = records_qs.model
+        model_fields = model._meta.fields + model._meta.many_to_many
+        headers = [field.name for field in model_fields] # Create CSV headers
+        def get_row(obj):
+            row = []
+            for field in model_fields:
+                if type(field) == models.ForeignKey:
+                    val = getattr(obj, field.name)
+                    if val:
+                        val = val.__unicode__()
+                elif type(field) == models.ManyToManyField:
+                    val = u', '.join([item.__unicode__() for item in getattr(obj, field.name).all()])
+                elif field.choices:
+                    val = getattr(obj, 'get_%s_display'%field.name)()
+                else:
+                    val = getattr(obj, field.name)
+                #row.append(str(val).encode("utf-8"))
+                row.append(str(val)) # Doing it this way removes enclosing quotes and preceding "b"
+            return row
+        def stream(headers, data): # Helper function to inject headers
+            if headers:
+                yield headers
+            for obj in data:
+                yield get_row(obj)
+        pseudo_buffer = Echo()
+        writer = csv.writer(pseudo_buffer, delimiter="\t")
+        response = StreamingHttpResponse(
+            (writer.writerow(row) for row in stream(headers, records_qs)),
+            content_type="text/csv")
+        response['Content-Disposition'] = 'attachment; filename="programerarecords.tsv"'
         return response

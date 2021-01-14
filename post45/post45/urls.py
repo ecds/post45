@@ -21,13 +21,16 @@ from app import views
 
 router = routers.DefaultRouter()
 router.register(r'records', views.RecordViewSet)
+router.register(r'programerarecords', views.ProgramEraRecordViewSet)
 
 urlpatterns = [
     url(r'^', include('app.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^records/$', views.RecordViewSet.as_view({'get': 'list'}), name='records'),
+    url(r'^programerarecords/$', views.ProgramEraRecordViewSet.as_view({'get': 'list'}), name='programerarecords'),
     path(r'^api/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^download/', views.RecordExportCsvView.as_view(), name="download"),
+    url(r'^programerarecordsdownload/', views.ProgramEraRecordExportCsvView.as_view(), name="programerarecordsdownload"),
     # url(r'^htrc/<docid>/', views.htrc_download, name='htrc_download'),
 
 ]
