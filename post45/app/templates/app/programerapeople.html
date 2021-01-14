@@ -14,17 +14,7 @@
 <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<style>
-  .popover-content {
-      height: 200px;
-      overflow-y: auto;
-      white-space:pre-wrap;
-  }
-</style>
-
-
 </head>
-
 
 <body>
   <nav class="navbar navbar-default">
@@ -40,69 +30,31 @@
   </nav>
 <div class="container-fluid">
 
-<p style="font-size:18pt;">This table provides a preview of some of the variables in the Post45 dataset. To download the full dataset in a tab-delimited file, <a href="{% url 'download' %}">click here.</a></p>
+<p style="font-size:18pt;">This table provides a preview of some of the variables in the Program Era people dataset. To download the full dataset in a tab-delimited file, <a href="{% url 'programerapeopledownload' %}">click here.</a></p>
 
-<table id="record-table" class="stripe hover row-border" data-server-side="true" data-ajax="/records/?format=datatables">
+<table id="record-table" class="stripe hover row-border" data-server-side="true" data-ajax="/programerapeople/?format=datatables">
   <thead>
     <tr>
-    <th data-data="docid">docid <a href="#" data-toggle="popover" title="Definition" data-content="HathiTrust volume ID. This is an item-level identifier for volumes. IDs used for pairtree storage can come in two different forms; I have provided the 'clean' versions of the IDs that are legal as filenames."><i class="bi bi-question-circle"></i></a></th>
-    <th data-data="oldauthor">oldauthor</th>
-    <th data-data="author">author <a href="#" data-toggle="popover" title="Definition" data-content="A version of the author name that has undergone some cleaning and standardization. For instance, honorifics like 'Sir' and 'Mrs' have been moved to the end of the name, as have parenthetical expansions of initials."><i class="bi bi-question-circle"></i></a></th>
-      <th data-data="authordate">authordate</th>
-      <th data-data="title">title</th>
-      <th data-data="parttitle">parttitle</th>
-      <th data-data="shorttitle">shorttitle</th>
-      <th data-data="inferreddate">inferreddate</th>
-      <th data-data="latestcomp">latestcomp</th>
-      <th data-data="datetype">datetype</th>
-      <th data-data="startdate">startdate</th>
-      <th data-data="enddate">enddate</th>
-      <th data-data="imprint">imprint</th>
-      <th data-data="imprintdate">imprintdate</th>
-      <th data-data="contents">contents</th>
-      <th data-data="genres">genres</th>
-      <th data-data="subjects">subjects</th>
-      <th data-data="geographics">geographics</th>
-      <th data-data="locnum">locnum</th>
-      <th data-data="oclc">oclc</th>
-      <th data-data="place">place</th>
-      <th data-data="recordid">recordid</th>
-      <th data-data="enumcron">enumcron</th>
-      <th data-data="volnum">volnum</th>
-      <th data-data="instances">instances</th>
-      <th data-data="juvenileprob">juvenileprob</th>
-      <th data-data="nonficprob">nonficprob</th>
+    <th data-data="person_id">person_id</th>
+    <th data-data="full_name">full_name</th>
+    <th data-data="given_name">given_name</th>
+      <th data-data="middle_name">middle_name</th>
+      <th data-data="family_name">family_name</th>
+      <th data-data="pen_name">pen_name</th>
+      <th data-data="gender">gender</th>
+      <th data-data="country">country</th>
       </tr>
         </thead>
         <tfoot>
           <tr>
-            <th>docid</th>
-            <th>oldauthor</th>
-            <th>author</th>
-              <th>authordate</th>
-              <th>title</th>
-              <th>parttitle</th>
-              <th>shorttitle</th>
-              <th>inferreddate</th>
-              <th>latestcomp</th>
-              <th>datetype</th>
-              <th>startdate</th>
-              <th>enddate</th>
-              <th>imprint</th>
-              <th>imprintdate</th>
-              <th>contents</th>
-              <th>genres</th>
-              <th>subjects</th>
-              <th>geographics</th>
-              <th>locnum</th>
-              <th>oclc</th>
-              <th>place</th>
-              <th>recordid</th>
-              <th>enumcron</th>
-              <th>volnum</th>
-              <th>instances</th>
-              <th>juvenileprob</th>
-              <th>nonficprob</th>
+            <th>person_id</th>
+            <th>full_name</th>
+            <th>given_name</th>
+              <th>middle_name</th>
+              <th>family_name</th>
+              <th>pen_name</th>
+              <th>gender</th>
+              <th>country</th>
           </tr>
           </tfoot>
 </table>
@@ -121,7 +73,7 @@
     var table = $('#record-table').DataTable( {
 
       //dom: 'lBfrtip',
-      ajax: '/records/?format=datatables',
+      ajax: '/programerapeople/?format=datatables',
      //  buttons: [
      //      {
      //        extend: 'csv',
@@ -165,11 +117,11 @@
     orderCellsTop: true,
 
     "columnDefs": [
-            {
-                "targets": [1, 4, 5, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,  22, 23, 24, 25, 26],
-                "visible": false,
-                "searchable": false
-            },
+            // {
+            //     "targets": [1, 4, 5, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,  22, 23, 24, 25, 26],
+            //     "visible": false,
+            //     "searchable": false
+            // },
         ]
   } );
 
