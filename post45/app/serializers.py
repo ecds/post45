@@ -1,4 +1,4 @@
-from .models import Record, ProgramEraRecord, ProgramEraPeople, ProgramEraGraduations
+from .models import Record, ProgramEraRecord, ProgramEraPeople, ProgramEraGraduations, MasterPrizeRecord
 from rest_framework import serializers
 
 
@@ -26,3 +26,10 @@ class ProgramEraGraduationsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = ProgramEraGraduations
         fields = ['record_id', 'graduate_name', 'institution', 'advisor_name', 'year', 'program', 'degree', 'thesis_title', 'genre']
+
+
+class MasterPrizeRecordSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = MasterPrizeRecord
+        fields = ['name', 'firstname', 'lastname', 'role', 'prize', 'year', 'genre', 'type', 'amount', 'gender', 'race', 'POCnetwork1', 'POCnetwork2', 'USNWRrank', 'rank', 'ivyflag', 'top50percent', 'harvardflag', 'typeofhighered', 'ba', 'ba2', 'mastersorabove', 'ma', 'ma2', 'mfaflag', 'mfa', 'mfa2', 'phd', 'phd2', 'law', 'med', 'bigfive', 'prizebooktitle', 'careerbooktitle1', 'prizebooktitle2']

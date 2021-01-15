@@ -23,7 +23,8 @@ router = routers.DefaultRouter()
 router.register(r'records', views.RecordViewSet)
 router.register(r'programerarecords', views.ProgramEraRecordViewSet)
 router.register(r'programerapeople', views.ProgramEraPeopleViewSet)
-router.register(r'programeragradutions', views.ProgramEraPeopleViewSet)
+router.register(r'programeragraduations', views.ProgramEraPeopleViewSet)
+router.register(r'masterprize', views.MasterPrizeRecordViewSet)
 
 urlpatterns = [
     url(r'^', include('app.urls')),
@@ -32,11 +33,13 @@ urlpatterns = [
     url(r'^programerarecords/$', views.ProgramEraRecordViewSet.as_view({'get': 'list'}), name='programerarecords'),
     url(r'^programerapeople/$', views.ProgramEraPeopleViewSet.as_view({'get': 'list'}), name='programerapeople'),
     url(r'^programeragraduations/$', views.ProgramEraGraduationsViewSet.as_view({'get': 'list'}), name='programeragraduations'),
+    url(r'^masterprize/$', views.MasterPrizeRecordViewSet.as_view({'get': 'list'}), name='masterprize'),
     path(r'^api/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^download/', views.RecordExportCsvView.as_view(), name="download"),
     url(r'^programerarecordsdownload/', views.ProgramEraRecordExportCsvView.as_view(), name="programerarecordsdownload"),
     url(r'^programerapeopledownload/', views.ProgramEraPeopleExportCsvView.as_view(), name="programerapeopledownload"),
     url(r'^programeragraduationsdownload/', views.ProgramEraGraduationsExportCsvView.as_view(), name="programeragraduationsdownload"),
+    url(r'^masterprizedownload/', views.MasterPrizeRecordExportCsvView.as_view(), name="masterprizedownload"),
     # url(r'^htrc/<docid>/', views.htrc_download, name='htrc_download'),
 
 ]
