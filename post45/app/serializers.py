@@ -1,4 +1,4 @@
-from .models import Record, ProgramEraRecord, ProgramEraPeople
+from .models import Record, ProgramEraRecord, ProgramEraPeople, ProgramEraGraduations
 from rest_framework import serializers
 
 
@@ -20,5 +20,9 @@ class ProgramEraPeopleSerializer(serializers.HyperlinkedModelSerializer):
         model = ProgramEraPeople
         fields = ['person_id', 'full_name', 'given_name', 'middle_name', 'family_name', 'pen_name', 'gender', 'country']
 
+class ProgramEraGraduationsSerializer(serializers.HyperlinkedModelSerializer):
+    #TODO: add advisor_id and graduate_id to the fields and configure their lookup fields properly
 
-        #fields = ['record_id', 'graduate_name', 'graduate_id', 'institution', 'advisor_name', 'advisor_id', 'year', 'program', 'degree', 'thesis_title', 'genre']
+    class Meta:
+        model = ProgramEraGraduations
+        fields = ['record_id', 'graduate_name', 'institution', 'advisor_name', 'year', 'program', 'degree', 'thesis_title', 'genre']

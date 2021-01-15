@@ -4,8 +4,8 @@ from django.views.generic import View
 from django.http import StreamingHttpResponse
 from django.shortcuts import render
 from rest_framework import viewsets
-from .models import Record, ProgramEraRecord, ProgramEraPeople
-from .serializers import RecordSerializer, ProgramEraRecordSerializer, ProgramEraPeopleSerializer
+from .models import Record, ProgramEraRecord, ProgramEraPeople, ProgramEraGraduations
+from .serializers import RecordSerializer, ProgramEraRecordSerializer, ProgramEraPeopleSerializer, ProgramEraGraduationsSerializer
 from htrc_features import utils
 
 
@@ -17,6 +17,9 @@ def programerarecord(request):
 
 def programerapeople(request):
     return render(request, 'app/programerapeople.html')
+
+def programeragraduations(request):
+    return render(request, 'app/programeragraduations.html')
 
 def about(request):
     return render(request, 'app/about.html')
@@ -156,4 +159,46 @@ class ProgramEraPeopleExportCsvView(View):
             (writer.writerow(row) for row in stream(headers, records_qs)),
             content_type="text/csv")
         response['Content-Disposition'] = 'attachment; filename="programerapeople.tsv"'
+        return response
+
+class ProgramEraGraduationsViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = ProgramEraGraduations.objects.all().order_by('record_id')
+    serializer_class = ProgramEraGraduationsSerializer
+
+class ProgramEraGraduationsExportCsvView(View):
+    def get(self, request, *args, **kwargs):
+        records_qs =  ProgramEraGraduations.objects.all()
+        model = records_qs.model
+        model_fields = model._meta.fields + model._meta.many_to_many
+        headers = [field.name for field in model_fields] # Create CSV headers
+        def get_row(obj):
+            row = []
+            for field in model_fields:
+                if type(field) == models.ForeignKey:
+                    val = getattr(obj, field.name)
+                    if val:
+                        val = val.__unicode__()
+                elif type(field) == models.ManyToManyField:
+                    val = u', '.join([item.__unicode__() for item in getattr(obj, field.name).all()])
+                elif field.choices:
+                    val = getattr(obj, 'get_%s_display'%field.name)()
+                else:
+                    val = getattr(obj, field.name)
+                #row.append(str(val).encode("utf-8"))
+                row.append(str(val)) # Doing it this way removes enclosing quotes and preceding "b"
+            return row
+        def stream(headers, data): # Helper function to inject headers
+            if headers:
+                yield headers
+            for obj in data:
+                yield get_row(obj)
+        pseudo_buffer = Echo()
+        writer = csv.writer(pseudo_buffer, delimiter="\t")
+        response = StreamingHttpResponse(
+            (writer.writerow(row) for row in stream(headers, records_qs)),
+            content_type="text/csv")
+        response['Content-Disposition'] = 'attachment; filename="programeragraduations.tsv"'
         return response
