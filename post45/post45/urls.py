@@ -24,7 +24,7 @@ router.register(r'records', views.RecordViewSet)
 router.register(r'programerarecords', views.ProgramEraRecordViewSet)
 router.register(r'programerapeople', views.ProgramEraPeopleViewSet)
 router.register(r'programeragraduations', views.ProgramEraPeopleViewSet)
-router.register(r'masterprize', views.MasterPrizeRecordViewSet)
+router.register(r'masterprizedata', views.MasterPrizeRecordViewSet)
 
 urlpatterns = [
     url(r'^', include('app.urls')),
