@@ -40,6 +40,6 @@ urlpatterns = [
     url(r'^programerapeopledownload/', views.ProgramEraPeopleExportCsvView.as_view(), name="programerapeopledownload"),
     url(r'^programeragraduationsdownload/', views.ProgramEraGraduationsExportCsvView.as_view(), name="programeragraduationsdownload"),
     url(r'^masterprizedownload/', views.MasterPrizeRecordExportCsvView.as_view(), name="masterprizedownload"),
-    # url(r'^htrc/<docid>/', views.htrc_download, name='htrc_download'),
+    path('accounts/', include('django.contrib.auth.urls')),
 
 ]

@@ -3,6 +3,7 @@ from django.db import models
 from django.views.generic import View
 from django.http import StreamingHttpResponse
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from rest_framework import viewsets
 from .models import Record, ProgramEraRecord, ProgramEraPeople, ProgramEraGraduations, MasterPrizeRecord
 from .serializers import RecordSerializer, ProgramEraRecordSerializer, ProgramEraPeopleSerializer, ProgramEraGraduationsSerializer, MasterPrizeRecordSerializer
@@ -21,6 +22,7 @@ def programerapeople(request):
 def programeragraduations(request):
     return render(request, 'app/programeragraduations.html')
 
+@login_required(login_url='/accounts/login/')
 def masterprize(request):
     return render(request, 'app/masterprize.html')
 
