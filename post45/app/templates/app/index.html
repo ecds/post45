@@ -40,7 +40,7 @@
   </nav>
 <div class="container-fluid">
 
-<p style="font-size:18pt;">This table provides a preview of some of the variables in the Post45 dataset. To download the full dataset in a tab-delimited file, <a href="{% url 'download' %}">click here.</a></p>
+<p style="font-size:18pt;">To download the full dataset in a tab-delimited file, <a href="{% url 'download' %}">click here.</a></p>
 
 <table id="record-table" class="stripe hover row-border" data-server-side="true" data-ajax="/records/?format=datatables">
   <thead>
@@ -164,13 +164,13 @@
 
     orderCellsTop: true,
 
-    "columnDefs": [
-            {
-                "targets": [1, 4, 5, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,  22, 23, 24, 25, 26],
-                "visible": false,
-                "searchable": false
-            },
-        ]
+    // "columnDefs": [
+    //         {
+    //             "targets": [1, 4, 5, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,  22, 23, 24, 25, 26],
+    //             "visible": false,
+    //             "searchable": false
+    //         },
+    //     ]
   } );
 
   // Apply the search
