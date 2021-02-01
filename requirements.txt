@@ -6,3 +6,4 @@ django-admin-numeric-filter
 djangorestframework
 djangorestframework-datatables
 htrc-feature-reader
+django-filter
