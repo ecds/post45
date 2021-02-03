@@ -185,7 +185,7 @@ class ProgramEraGraduationsExportCsvView(View):
                 if type(field) == models.ForeignKey:
                     val = getattr(obj, field.name)
                     if val:
-                        val = val.__unicode__()
+                        val = val.__str__()
                 elif type(field) == models.ManyToManyField:
                     val = u', '.join([item.__unicode__() for item in getattr(obj, field.name).all()])
                 elif field.choices:
