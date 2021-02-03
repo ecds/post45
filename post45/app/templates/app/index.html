@@ -30,48 +30,75 @@
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="/index">Post45 Data</a>
+        <a class="navbar-brand" href="/about">Post45 Data</a>
       </div>
-      <ul class="nav navbar-nav">
-        <li><a href="/about">About</a></li>
-        <li class="active"><a href="/index">Data</a></li>
-      </ul>
+      <!-- <ul class="nav navbar-nav">
+        <li class="active"><a href="/about">About</a></li>
+      </ul> -->
     </div>
   </nav>
 <div class="container-fluid">
 
-<p style="font-size:18pt;">To download the full dataset in a tab-delimited file, <a href="{% url 'download' %}">click here.</a></p>
+<h1>HathiTrust Fiction</h1>
+<p>A table with metadata for fiction held by HathiTrust from 1945 to the present. Also includes HathiIDs.</p>
+<p>To download the full dataset in a tab-delimited file, <a href="{% url 'download' %}">click here.</a></p>
 
 <table id="record-table" class="stripe hover row-border" data-server-side="true" data-ajax="/records/?format=datatables">
   <thead>
     <tr>
     <th data-data="docid">docid <a href="#" data-toggle="popover" title="Definition" data-content="HathiTrust volume ID. This is an item-level identifier for volumes. IDs used for pairtree storage can come in two different forms; I have provided the 'clean' versions of the IDs that are legal as filenames."><i class="bi bi-question-circle"></i></a></th>
-    <th data-data="oldauthor">oldauthor</th>
+
+    <th data-data="oldauthor">oldauthor <a href="#" data-toggle="popover" title="Definition" data-content="This is the author name as recorded in HathiTrust."><i class="bi bi-question-circle"></i></a></th>
+
     <th data-data="author">author <a href="#" data-toggle="popover" title="Definition" data-content="A version of the author name that has undergone some cleaning and standardization. For instance, honorifics like 'Sir' and 'Mrs' have been moved to the end of the name, as have parenthetical expansions of initials."><i class="bi bi-question-circle"></i></a></th>
-      <th data-data="authordate">authordate</th>
-      <th data-data="title">title</th>
-      <th data-data="parttitle">parttitle</th>
-      <th data-data="shorttitle">shorttitle</th>
-      <th data-data="inferreddate">inferreddate</th>
-      <th data-data="latestcomp">latestcomp</th>
-      <th data-data="datetype">datetype</th>
-      <th data-data="startdate">startdate</th>
-      <th data-data="enddate">enddate</th>
-      <th data-data="imprint">imprint</th>
-      <th data-data="imprintdate">imprintdate</th>
-      <th data-data="contents">contents</th>
-      <th data-data="genres">genres</th>
-      <th data-data="subjects">subjects</th>
-      <th data-data="geographics">geographics</th>
-      <th data-data="locnum">locnum</th>
-      <th data-data="oclc">oclc</th>
-      <th data-data="place">place</th>
-      <th data-data="recordid">recordid</th>
-      <th data-data="enumcron">enumcron</th>
-      <th data-data="volnum">volnum</th>
-      <th data-data="instances">instances</th>
-      <th data-data="juvenileprob">juvenileprob</th>
-      <th data-data="nonficprob">nonficprob</th>
+
+      <th data-data="authordate">authordate <a href="#" data-toggle="popover" title="Definition" data-content="Birth and death dates, to the extent that they were available in Hathi."><i class="bi bi-question-circle"></i></a></th>
+
+      <th data-data="title">title <a href="#" data-toggle="popover" title="Definition" data-content="The full title, as listed in HathiTrust."><i class="bi bi-question-circle"></i></a></th>
+
+      <th data-data="parttitle">parttitle <a href="#" data-toggle="popover" title="Definition" data-content="The volume-specific title, where one has been inferred."><i class="bi bi-question-circle"></i></a></th>
+
+      <th data-data="shorttitle">shorttitle <a href="#" data-toggle="popover" title="Definition" data-content="The title, minus certain formatting characters and statements about authorship. Collected Works have been replaced by volume-specific titles where possible."><i class="bi bi-question-circle"></i></a></th>
+
+      <th data-data="inferreddate">inferreddate <a href="#" data-toggle="popover" title="Definition" data-content="The earliest date of publication attested in various MARC date fields. But note, this is a date of publication, not a date of first publication. Inference is made by the function infer_date in the module SonicScredriver.py."><i class="bi bi-question-circle"></i></a></th>
+
+      <th data-data="latestcomp">latestcomp <a href="#" data-toggle="popover" title="Definition" data-content="The latest possible date of composition given everything else we know. It will be earlier than inferreddate if we know either 1) the author's date of death or 2) a copyright / first publication date for the title. For this process of inference, see makemaster/clean_master.ipynb*."><i class="bi bi-question-circle"></i></a></th>
+
+      <th data-data="datetype">datetype <a href="#" data-toggle="popover" title="Definition" data-content="Date type as extracted from MARC controlfield 008."><i class="bi bi-question-circle"></i></a></th>
+
+      <th data-data="startdate">startdate <a href="#" data-toggle="popover" title="Definition" data-content="Start date as extracted from MARC controlfield 008."><i class="bi bi-question-circle"></i></a></th>
+
+      <th data-data="enddate">enddate <a href="#" data-toggle="popover" title="Definition" data-content="End date as extracted from MARC controlfield 008."><i class="bi bi-question-circle"></i></a></th>
+
+      <th data-data="imprint">imprint <a href="#" data-toggle="popover" title="Definition" data-content="Imprint text stored in MARC."><i class="bi bi-question-circle"></i></a></th>
+
+      <th data-data="imprintdate">imprintdate <a href="#" data-toggle="popover" title="Definition" data-content="Imprinted date as extracted from other text fields in MARC."><i class="bi bi-question-circle"></i></a></th>
+
+      <th data-data="contents">contents <a href="#" data-toggle="popover" title="Definition" data-content="Usually describe parts of the work; these could be individual short stories in a collection, or volumes of a multi-volume Collected Works. When possible, I have used this guidance to assign specific titles to volumes."><i class="bi bi-question-circle"></i></a></th>
+
+      <th data-data="genres">genres <a href="#" data-toggle="popover" title="Definition" data-content="Mostly Library of Congress genre/form headings. At an early stage of processing, this field also contained some information from the MARC record leader, but that information was so unreliable that we removed it for final release."><i class="bi bi-question-circle"></i></a></th>
+
+      <th data-data="subjects">subjects <a href="#" data-toggle="popover" title="Definition" data-content="Library of Congress headings that a cataloger assigned to the work. "><i class="bi bi-question-circle"></i></a></th>
+
+      <th data-data="geographics">geographics <a href="#" data-toggle="popover" title="Definition" data-content="Library of Congress headings that a cataloger assigned to the work. Geographics indicate that the work is about a specific region."><i class="bi bi-question-circle"></i></a></th>
+
+      <th data-data="locnum">locnum <a href="#" data-toggle="popover" title="Definition" data-content="Library of Congress call number, when available."><i class="bi bi-question-circle"></i></a></th>
+
+      <th data-data="oclc">oclc <a href="#" data-toggle="popover" title="Definition" data-content="OCLC number, when available."><i class="bi bi-question-circle"></i></a></th>
+
+      <th data-data="place">place <a href="#" data-toggle="popover" title="Definition" data-content="Place of publication code, as documented in MARC controlfield 008, to interpret it see the MARC Code List for Countries."><i class="bi bi-question-circle"></i></a></th>
+
+      <th data-data="recordid">recordid <a href="#" data-toggle="popover" title="Definition" data-content="This is the HathiTrust record ID; in multivolume works, it may be the same for all volumes."><i class="bi bi-question-circle"></i></a></th>
+
+      <th data-data="enumcron">enumcron <a href="#" data-toggle="popover" title="Definition" data-content="A field that usually distinguishes multiple volumes of a single record. Sometimes it has other uses."><i class="bi bi-question-circle"></i></a></th>
+
+      <th data-data="volnum">volnum <a href="#" data-toggle="popover" title="Definition" data-content="The numeric part of enumcron, if it seems to be a volume number."><i class="bi bi-question-circle"></i></a></th>
+
+      <th data-data="instances">instances <a href="#" data-toggle="popover" title="Definition" data-content="The number of copies of this volume (of this printing) collapsed in deduplication."><i class="bi bi-question-circle"></i></a></th>
+
+      <th data-data="juvenileprob">juvenileprob <a href="#" data-toggle="popover" title="Definition" data-content="I also trained a model to identify juvenile fiction. Volumes with a high probability in this column are set aside in a distinct table."><i class="bi bi-question-circle"></i></a></th>
+
+      <th data-data="nonficprob">nonficprob <a href="#" data-toggle="popover" title="Definition" data-content="The probability that this work was nonfiction. The fiction/nonfiction boundary is tricky, so it was useful to train a model specifically for that boundary, leaving aside poetry, drama, etc."><i class="bi bi-question-circle"></i></a></th>
       </tr>
         </thead>
         <tfoot>

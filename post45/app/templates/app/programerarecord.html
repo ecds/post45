@@ -20,17 +20,17 @@
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="/index">Post45 Data</a>
+        <a class="navbar-brand" href="/about">Post45 Data</a>
       </div>
-      <ul class="nav navbar-nav">
-        <li><a href="/about">About</a></li>
-        <li class="active"><a href="/index">Data</a></li>
-      </ul>
+      <!-- <ul class="nav navbar-nav">
+        <li class="active"><a href="/about">About</a></li>
+      </ul> -->
     </div>
   </nav>
 <div class="container-fluid">
-
-<p style="font-size:18pt;">This table provides a preview of some of the variables in the Program Era dataset. To download the full dataset in a tab-delimited file, <a href="{% url 'programerarecordsdownload' %}">click here.</a></p>
+<h1>Iowa Writers' Workshop: Corpus</h1>
+<p>A table with titles by notable Iowa Writers' Workshop authors that are held by HathiTrust.</p>
+<p>To download the full dataset in a tab-delimited file, <a href="{% url 'programerarecordsdownload' %}">click here.</a></p>
 
 <table id="record-table" class="stripe hover row-border" data-server-side="true" data-ajax="/programerarecords/?format=datatables">
   <thead>
