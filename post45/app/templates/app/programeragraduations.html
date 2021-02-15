@@ -14,6 +14,14 @@
 <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<style>
+  .popover-content {
+      width: 300px;
+      height: 200px;
+      overflow-y: auto;
+      white-space:pre-wrap;
+  }
+</style>
 </head>
 
 <body>
@@ -32,18 +40,26 @@
 <p>Table of Iowa graduates between 1931 and Spring 2014 that includes graduate name, advisor name, year of matriculation, program, degree, thesis title, and literary genre.</p>
 <p>To download the full dataset in a tab-delimited file, <a href="{% url 'programeragraduationsdownload' %}">click here.</a></p>
 
-<table id="record-table" class="stripe hover row-border" data-server-side="true" data-ajax="/programeragraduations/?format=datatables">
+<table id="record-table" class="stripe hover compact row-border" data-server-side="true" data-ajax="/programeragraduations/?format=datatables">
   <thead>
     <tr>
-    <th data-data="record_id">record_id</th>
-    <th data-data="graduate_name">graduate_name</th>
-      <th data-data="institution">institution</th>
-      <th data-data="advisor_name">advisor_name</th>
-      <th data-data="year">year</th>
-      <th data-data="program">program</th>
-      <th data-data="degree">degree</th>
-      <th data-data="thesis_title">thesis_title</th>
-      <th data-data="genre">genre</th>
+    <th data-data="record_id">record_id <a href="#" data-toggle="popover" title="Definition" data-content="Numeric unique id of the graduation record in this database"><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="graduate_name">graduate_name <a href="#" data-toggle="popover" title="Definition" data-content="Full name of the graduating student"><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="institution">institution <a href="#" data-toggle="popover" title="Definition" data-content="Name of degree-granting institution"><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="advisor_name">advisor_name <a href="#" data-toggle="popover" title="Definition" data-content="Full name of the student's thesis advisor"><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="year">year <a href="#" data-toggle="popover" title="Definition" data-content="Year of matriculation"><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="program">program <a href="#" data-toggle="popover" title="Definition" data-content="Program (e.g. Writers' Workshop) or major when no specific program applies (e.g. English)"><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="degree">degree <a href="#" data-toggle="popover" title="Definition" data-content="e.g. 'MFA'""><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="thesis_title">thesis_title <a href="#" data-toggle="popover" title="Definition" data-content="Title of thesis where applicable"><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="genre">genre <a href="#" data-toggle="popover" title="Definition" data-content="Literary genre of the thesis, e.g. 'Poetry', 'Fiction', 'Literary Translation'""><i class="bi bi-question-circle"></i></a></th>
       </tr>
         </thead>
         <tfoot>

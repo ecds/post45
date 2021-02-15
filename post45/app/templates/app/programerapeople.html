@@ -14,6 +14,14 @@
 <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<style>
+  .popover-content {
+      width: 300px;
+      height: 200px;
+      overflow-y: auto;
+      white-space:pre-wrap;
+  }
+</style>
 </head>
 
 <body>
@@ -32,17 +40,24 @@
 <p>Table that includes full, given, middle, family, pen names, gender, and country of origin of students and teachers at the Iowa Writers' Workshop between 1931 and Spring 2014.</p>
 <p>To download the full dataset in a tab-delimited file, <a href="{% url 'programerapeopledownload' %}">click here.</a></p>
 
-<table id="record-table" class="stripe hover row-border" data-server-side="true" data-ajax="/programerapeople/?format=datatables">
+<table id="record-table" class="stripe hover compact row-border" data-server-side="true" data-ajax="/programerapeople/?format=datatables">
   <thead>
     <tr>
-    <th data-data="person_id">person_id</th>
-    <th data-data="full_name">full_name</th>
-    <th data-data="given_name">given_name</th>
-      <th data-data="middle_name">middle_name</th>
-      <th data-data="family_name">family_name</th>
-      <th data-data="pen_name">pen_name</th>
-      <th data-data="gender">gender</th>
-      <th data-data="country">country</th>
+    <th data-data="person_id">person_id <a href="#" data-toggle="popover" title="Definition" data-content="Numeric unique id of the individual"><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="full_name">full_name <a href="#" data-toggle="popover" title="Definition" data-content="Name as listed in University of Iowa records in 'Lastname, Firstname Middlename' format"><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="given_name">given_name <a href="#" data-toggle="popover" title="Definition" data-content="(first name)"><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="middle_name">middle_name</th>
+
+    <th data-data="family_name">family_name <a href="#" data-toggle="popover" title="Definition" data-content="(last name)"><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="pen_name">pen_name <a href="#" data-toggle="popover" title="Definition" data-content="Preferred pen name of the writer, if different from full name (not exhaustive)"><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="gender">gender <a href="#" data-toggle="popover" title="Definition" data-content="As provisionally labeled by the Program Era team based on name; intended for study of broad patterns over time and not as definitive statements on an individual basis. values 'Male', 'Female', 'Other', 'Unknown'"><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="country">country <a href="#" data-toggle="popover" title="Definition" data-content="Country of origin"><i class="bi bi-question-circle"></i></a></th>
       </tr>
         </thead>
         <tfoot>
