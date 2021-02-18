@@ -14,6 +14,15 @@
 <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<style>
+  .popover-content {
+      width: 300px;
+      height: 200px;
+      overflow-y: auto;
+      white-space:pre-wrap;
+  }
+</style>
+
 </head>
 
 <body>
@@ -35,20 +44,33 @@
 <table id="record-table" class="stripe hover row-border" data-server-side="true" data-ajax="/programerarecords/?format=datatables">
   <thead>
     <tr>
-    <th data-data="docid">docid</th>
-    <th data-data="authors">authors</th>
-    <th data-data="title">title</th>
-      <th data-data="imprint">imprint</th>
-      <th data-data="date">date</th>
-      <th data-data="place">place</th>
-      <th data-data="subjects">subjects</th>
-      <th data-data="geographics">geographics</th>
-      <th data-data="genres">genres</th>
-      <th data-data="classifications">classifications</th>
-      <th data-data="locnum">locnum</th>
-      <th data-data="oclc">oclc</th>
-      <th data-data="isbn">isbn</th>
-      </tr>
+    <th data-data="docid">docid <a href="#" data-toggle="popover" title="Definition" data-content="HTRC Record Number"><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="authors">authors <a href="#" data-toggle="popover" title="Definition" data-content="Authors or attribution. Multiple values concatenated with pipes."><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="title">title <a href="#" data-toggle="popover" title="Definition" data-content="Volume title"><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="imprint">imprint <a href="#" data-toggle="popover" title="Definition" data-content="Publishing imprint"><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="date">date <a href="#" data-toggle="popover" title="Definition" data-content="Publication date"><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="place">place <a href="#" data-toggle="popover" title="Definition" data-content="Publication place, drawn from MARC metadata, abbreviated, see the MARC Code List for Countries to interpret abbreviations (https://www.loc.gov/marc/countries/)"><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="subjects">subjects <a href="#" data-toggle="popover" title="Definition" data-content="Library of Congress subject headings for work (where available)"><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="geographics">geographics <a href="#" data-toggle="popover" title="Definition" data-content="Library of Congress listings for regions discussed by work (where available) "><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="genres">genres <a href="#" data-toggle="popover" title="Definition" data-content="Genres"><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="classifications">classifications <a href="#" data-toggle="popover" title="Definition" data-content=""><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="locnum">locnum <a href="#" data-toggle="popover" title="Definition" data-content="Library of Congress Control Number (where available) "><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="oclc">oclc <a href="#" data-toggle="popover" title="Definition" data-content="OCLC (WorldCat) Control Number (where available) "><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="isbn">isbn <a href="#" data-toggle="popover" title="Definition" data-content="ISBN-10, ISBN-13 numbers for volume (where available) "><i class="bi bi-question-circle"></i></a></th>
+
+    </tr>
         </thead>
         <tfoot>
           <tr>
