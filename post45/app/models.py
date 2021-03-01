@@ -34,8 +34,11 @@ class Record(models.Model):
         return self.docid
 
 class ProgramEraRecord(models.Model):
-    docid = models.CharField(max_length=255, blank=True, null=True)
-    authors = models.TextField(blank=True, null=True)
+    author1_normalized = models.TextField(blank=True, null=True)
+    author1 = models.TextField(blank=True, null=True)
+    author2 = models.TextField(blank=True, null=True)
+    author3 = models.TextField(blank=True, null=True)
+    author4 = models.TextField(blank=True, null=True)
     title = models.TextField(blank=True, null=True)
     imprint = models.TextField(blank=True, null=True)
     date = models.PositiveIntegerField(blank=True, null=True)
@@ -44,12 +47,12 @@ class ProgramEraRecord(models.Model):
     geographics = models.TextField(max_length=255, blank=True, null=True)
     genres = models.TextField(max_length=255, blank=True, null=True)
     classifications = models.TextField(max_length=255, blank=True, null=True)
-    locnum = models.CharField(max_length=255, blank=True, null=True)
-    oclc = models.CharField(max_length=255, blank=True, null=True)
     isbn = models.CharField(max_length=255, blank=True, null=True)
+    oclc = models.CharField(max_length=255, blank=True, null=True)
+    lccn = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
-        return self.docid
+        return self.title
 
 
 class ProgramEraPeople(models.Model):
@@ -120,4 +123,4 @@ class MasterPrizeRecord(models.Model):
     bigfive = models.CharField(max_length=255, blank=True, null=True)
     prizebooktitle = models.CharField(max_length=255, blank=True, null=True)
     careerbooktitle1 = models.CharField(max_length=255, blank=True, null=True)
-    prizebooktitle2 = models.CharField(max_length=255, blank=True, null=True)								
+    prizebooktitle2 = models.CharField(max_length=255, blank=True, null=True)

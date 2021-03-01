@@ -29,8 +29,8 @@ class ProgramEraRecordResource(resources.ModelResource):
 
 class ProgramEraRecordAdmin(ImportExportModelAdmin, admin.ModelAdmin):
         resource_class = ProgramEraRecordResource
-        list_display = ('docid', 'title', 'authors', 'date')
-        search_fields = ('docid', 'title', 'authors', 'date')
+        list_display = ('id', 'title', 'author1_normalized', 'date')
+        search_fields = ('id', 'title', 'author1_normalized', 'date')
 
 admin.site.register(ProgramEraRecord, ProgramEraRecordAdmin)
 

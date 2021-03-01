@@ -44,9 +44,15 @@
 <table id="record-table" class="stripe hover row-border" data-server-side="true" data-ajax="/programerarecords/?format=datatables">
   <thead>
     <tr>
-    <th data-data="docid">docid <a href="#" data-toggle="popover" title="Definition" data-content="HTRC Record Number"><i class="bi bi-question-circle"></i></a></th>
+    <th data-data="author1_normalized">author1-normalized <a href="#" data-toggle="popover" title="Definition" data-content="Main author name (normalized by PEP team). We have manually added this field to ensure consistency for the searching and counting of lead author names. In some cases, HTRC author listings featured birth and death dates or punctuation that made names inconsistent. We have also included the original author fields as listed by HTRC for reference. "><i class="bi bi-question-circle"></i></a></th>
 
-    <th data-data="authors">authors <a href="#" data-toggle="popover" title="Definition" data-content="Authors or attributions. Multiple values concatenated with pipes. First author listed is the main authoer as listed in HTRC record."><i class="bi bi-question-circle"></i></a></th>
+    <th data-data="author1">author1 <a href="#" data-toggle="popover" title="Definition" data-content="Main author (as listed in HTRC record)"><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="author2">author2 <a href="#" data-toggle="popover" title="Definition" data-content="Secondary author or attribution"><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="author3">author3 <a href="#" data-toggle="popover" title="Definition" data-content="Tertiary author or attribution"><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="author4">author4 <a href="#" data-toggle="popover" title="Definition" data-content="Quaternary author or attribution"><i class="bi bi-question-circle"></i></a></th>
 
     <th data-data="title">title <a href="#" data-toggle="popover" title="Definition" data-content="Volume title"><i class="bi bi-question-circle"></i></a></th>
 
@@ -60,11 +66,7 @@
 
     <th data-data="geographics">geographics <a href="#" data-toggle="popover" title="Definition" data-content="Library of Congress listings for regions discussed by work (where available) "><i class="bi bi-question-circle"></i></a></th>
 
-    <th data-data="genres">genres <a href="#" data-toggle="popover" title="Definition" data-content="Genres"><i class="bi bi-question-circle"></i></a></th>
-
-    <th data-data="classifications">classifications <a href="#" data-toggle="popover" title="Definition" data-content=""><i class="bi bi-question-circle"></i></a></th>
-
-    <th data-data="locnum">locnum <a href="#" data-toggle="popover" title="Definition" data-content="Library of Congress Control Number (where available) "><i class="bi bi-question-circle"></i></a></th>
+    <th data-data="lccn">lccn <a href="#" data-toggle="popover" title="Definition" data-content="Library of Congress Control Number (where available) "><i class="bi bi-question-circle"></i></a></th>
 
     <th data-data="oclc">oclc <a href="#" data-toggle="popover" title="Definition" data-content="OCLC (WorldCat) Control Number (where available) "><i class="bi bi-question-circle"></i></a></th>
 
@@ -74,17 +76,18 @@
         </thead>
         <tfoot>
           <tr>
-            <th>docid</th>
-            <th>authors</th>
+            <th>author1-normalized</th>
+            <th>author1</th>
+            <th>author2</th>
+            <th>author3</th>
+            <th>author4</th>
             <th>title</th>
               <th>imprint</th>
               <th>date</th>
               <th>place</th>
               <th>subjects</th>
               <th>geographics</th>
-              <th>genres</th>
-              <th>classifications</th>
-              <th>locnum</th>
+              <th>lccn</th>
               <th>oclc</th>
               <th>isbn</th>
           </tr>
