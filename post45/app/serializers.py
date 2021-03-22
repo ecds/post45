@@ -12,7 +12,7 @@ class ProgramEraRecordSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = ProgramEraRecord
-        fields = ['id', 'author1_normalized', 'author1', 'author2', 'author3', 'author4', 'title', 'imprint', 'date', 'place', 'subjects', 'geographics', 'lccn', 'oclc', 'isbn']
+        fields = ['id', 'htid', 'person_id', 'author1_normalized', 'author1', 'author2', 'author3', 'author4', 'title', 'imprint', 'date', 'place', 'subjects', 'geographics', 'lccn', 'oclc', 'isbn']
 
 class ProgramEraPeopleSerializer(serializers.HyperlinkedModelSerializer):
 

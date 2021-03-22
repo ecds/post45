@@ -34,6 +34,8 @@ class Record(models.Model):
         return self.docid
 
 class ProgramEraRecord(models.Model):
+    htid = models.CharField(max_length=255, blank=True, null=True)
+    person_id = models.CharField(max_length=255, blank=True, null=True)
     author1_normalized = models.TextField(blank=True, null=True)
     author1 = models.TextField(blank=True, null=True)
     author2 = models.TextField(blank=True, null=True)
