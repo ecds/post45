@@ -25,7 +25,7 @@ class ProgramEraGraduationsSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = ProgramEraGraduations
-        fields = ['record_id', 'graduate_name', 'institution', 'advisor_name', 'year', 'program', 'degree', 'thesis_title', 'genre']
+        fields = ['record_id', 'graduate_name', 'graduate_id', 'institution', 'advisor_name', 'advisor_id', 'year', 'program', 'degree', 'thesis_title', 'genre']
 
 
 class MasterPrizeRecordSerializer(serializers.HyperlinkedModelSerializer):

@@ -47,9 +47,13 @@
 
     <th data-data="graduate_name">graduate_name <a href="#" data-toggle="popover" title="Definition" data-content="Full name of the graduating student"><i class="bi bi-question-circle"></i></a></th>
 
+    <th data-data="graduate_id">graduate_id <a href="#" data-toggle="popover" title="Definition" data-content="Foreign key referring to person_id of the graduating student in people.tsv"><i class="bi bi-question-circle"></i></a></th>
+
     <th data-data="institution">institution <a href="#" data-toggle="popover" title="Definition" data-content="Name of degree-granting institution"><i class="bi bi-question-circle"></i></a></th>
 
     <th data-data="advisor_name">advisor_name <a href="#" data-toggle="popover" title="Definition" data-content="Full name of the student's thesis advisor"><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="advisor_id">advisor_id <a href="#" data-toggle="popover" title="Definition" data-content="Foreign key referring to person_id of the thesis advisor in people.tsv"><i class="bi bi-question-circle"></i></a></th>
 
     <th data-data="year">year <a href="#" data-toggle="popover" title="Definition" data-content="Year of matriculation"><i class="bi bi-question-circle"></i></a></th>
 
@@ -66,8 +70,10 @@
           <tr>
             <th>record_id</th>
             <th>graduate_name</th>
+            <th>graduate_id</th>
               <th>institution</th>
               <th>advisor_name</th>
+              <th>advisor_id</th>
               <th>year</th>
               <th>program</th>
               <th>degree</th>

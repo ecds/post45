@@ -74,10 +74,10 @@ class ProgramEraPeople(models.Model):
 class ProgramEraGraduations(models.Model):
     record_id = models.CharField(primary_key=True, max_length=255)
     graduate_name = models.CharField(max_length=255, blank=True, null=True)
-    graduate_id = models.ForeignKey('ProgramEraPeople', blank=True, null=True, on_delete=models.CASCADE, related_name='graduate_id')
+    graduate_id = models.CharField(max_length=255, blank=True, null=True)
     institution = models.CharField(max_length=255, blank=True, null=True)
     advisor_name = models.CharField(max_length=255, blank=True, null=True)
-    advisor_id = models.ForeignKey('ProgramEraPeople', blank=True, null=True, on_delete=models.CASCADE, related_name='advisor_id')
+    advisor_id = models.CharField(max_length=255, blank=True, null=True)
     year = models.CharField(max_length=255, blank=True, null=True)
     program = models.CharField(max_length=255, blank=True, null=True)
     degree = models.CharField(max_length=255, blank=True, null=True)

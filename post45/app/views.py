@@ -94,7 +94,7 @@ class ProgramEraRecordExportCsvView(View):
         records_qs =  ProgramEraRecord.objects.all()
         model = records_qs.model
         model_fields = model._meta.fields + model._meta.many_to_many
-        exclude_fields = ['person_id', 'subjects', 'geographics', 'genres', 'classifications']
+        exclude_fields = ['subjects', 'geographics', 'genres', 'classifications']
         model_fields = [x for x in model_fields if x.name not in exclude_fields]
         headers = [field.name for field in model_fields] # Create CSV headers
         def get_row(obj):
@@ -123,7 +123,7 @@ class ProgramEraRecordExportCsvView(View):
         response = StreamingHttpResponse(
             (writer.writerow(row) for row in stream(headers, records_qs)),
             content_type="text/csv")
-        response['Content-Disposition'] = 'attachment; filename="programerarecords.tsv"'
+        response['Content-Disposition'] = 'attachment; filename="pephtrccorpusdata.tsv"'
         return response
 
 class ProgramEraPeopleViewSet(viewsets.ModelViewSet):
@@ -165,7 +165,7 @@ class ProgramEraPeopleExportCsvView(View):
         response = StreamingHttpResponse(
             (writer.writerow(row) for row in stream(headers, records_qs)),
             content_type="text/csv")
-        response['Content-Disposition'] = 'attachment; filename="programerapeople.tsv"'
+        response['Content-Disposition'] = 'attachment; filename="people.tsv"'
         return response
 
 class ProgramEraGraduationsViewSet(viewsets.ModelViewSet):
@@ -207,7 +207,7 @@ class ProgramEraGraduationsExportCsvView(View):
         response = StreamingHttpResponse(
             (writer.writerow(row) for row in stream(headers, records_qs)),
             content_type="text/csv")
-        response['Content-Disposition'] = 'attachment; filename="programeragraduations.tsv"'
+        response['Content-Disposition'] = 'attachment; filename="graduations.tsv"'
         return response
 
 class ProgramEraPeopleViewSet(viewsets.ModelViewSet):
