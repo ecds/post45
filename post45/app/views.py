@@ -94,6 +94,8 @@ class ProgramEraRecordExportCsvView(View):
         records_qs =  ProgramEraRecord.objects.all()
         model = records_qs.model
         model_fields = model._meta.fields + model._meta.many_to_many
+        exclude_fields = ['person_id', 'subjects', 'geographics', 'genres', 'classifications']
+        model_fields = [x for x in model_fields if x.name not in exclude_fields]
         headers = [field.name for field in model_fields] # Create CSV headers
         def get_row(obj):
             row = []
