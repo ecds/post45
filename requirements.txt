@@ -1,4 +1,4 @@
-Django==3.1
+Django==3.1.8
 mysqlclient>=1.4.0
 PyMySQL
 django-import-export
