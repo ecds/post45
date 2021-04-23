@@ -28,7 +28,7 @@
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="/about">Post45 Data</a>
+        <a class="navbar-brand" href="{% url 'about' %}">Post45 Data</a>
       </div>
       <!-- <ul class="nav navbar-nav">
         <li class="active"><a href="/about">About</a></li>
@@ -40,7 +40,7 @@
 <p>Table of Iowa graduates between 1931 and Spring 2014 that includes graduate name, advisor name, year of matriculation, program, degree, thesis title, and literary genre.</p>
 <p>To download the full dataset in a tab-delimited file, <a href="{% url 'programeragraduationsdownload' %}">click here.</a></p>
 
-<table id="record-table" class="stripe hover compact row-border" data-server-side="true" data-ajax="/programeragraduations/?format=datatables">
+<table id="record-table" class="stripe hover compact row-border" data-server-side="true" data-ajax="programeragraduations/?format=datatables">
   <thead>
     <tr>
     <th data-data="record_id">record_id <a href="#" data-toggle="popover" title="Definition" data-content="Numeric unique id of the graduation record in this database"><i class="bi bi-question-circle"></i></a></th>

@@ -30,7 +30,7 @@
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="/about">Post45 Data</a>
+        <a class="navbar-brand" href="{% url 'about' %}">Post45 Data</a>
       </div>
       <!-- <ul class="nav navbar-nav">
         <li class="active"><a href="/about">About</a></li>
@@ -43,7 +43,7 @@
 <p>A table with metadata for fiction held by HathiTrust from 1945 to the present. Also includes HathiIDs.</p>
 <p>To download the full dataset in a tab-delimited file, <a href="{% url 'download' %}">click here.</a></p>
 
-<table id="record-table" class="stripe hover compact row-border" data-server-side="true" data-ajax="/records/?format=datatables">
+<table id="record-table" class="stripe hover compact row-border" data-server-side="true" data-ajax="records/?format=datatables">
   <thead>
     <tr>
     <th data-data="docid">docid <a href="#" data-toggle="popover" title="Definition" data-content="HathiTrust volume ID. This is an item-level identifier for volumes. IDs used for pairtree storage can come in two different forms; I have provided the 'clean' versions of the IDs that are legal as filenames."><i class="bi bi-question-circle"></i></a></th>

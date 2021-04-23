@@ -28,7 +28,7 @@
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="/about">Post45 Data</a>
+        <a class="navbar-brand" href="{% url 'about' %}">Post45 Data</a>
       </div>
       <!-- <ul class="nav navbar-nav">
         <li class="active"><a href="/about">About</a></li>
@@ -40,7 +40,7 @@
 <p>Table that includes full, given, middle, family, pen names, gender, and country of origin of students and teachers at the Iowa Writers' Workshop between 1931 and Spring 2014.</p>
 <p>To download the full dataset in a tab-delimited file, <a href="{% url 'programerapeopledownload' %}">click here.</a></p>
 
-<table id="record-table" class="stripe hover compact row-border" data-server-side="true" data-ajax="/programerapeople/?format=datatables">
+<table id="record-table" class="stripe hover compact row-border" data-server-side="true" data-ajax="programerapeople/?format=datatables">
   <thead>
     <tr>
     <th data-data="person_id">person_id <a href="#" data-toggle="popover" title="Definition" data-content="Numeric unique id of the individual"><i class="bi bi-question-circle"></i></a></th>
