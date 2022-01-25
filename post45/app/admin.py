@@ -2,7 +2,7 @@ from django.contrib import admin
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 from admin_numeric_filter.admin import NumericFilterModelAdmin, SingleNumericFilter, RangeNumericFilter, SliderNumericFilter
-from .models import Record, ProgramEraRecord, ProgramEraPeople, ProgramEraGraduations, MasterPrizeRecord
+from .models import Record, ProgramEraRecord, ProgramEraPeople, ProgramEraGraduations, MasterPrizeRecord, NYTFull, NYTTitle, NYTHathi
 
 
 class RecordResource(resources.ModelResource):
@@ -76,3 +76,40 @@ class MasterPrizeRecordAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     search_fields = ('name', 'role', 'prize', 'year', 'genre', 'type', 'amount')
 
 admin.site.register(MasterPrizeRecord, MasterPrizeRecordAdmin)
+
+
+class NYTFullResource(resources.ModelResource):
+
+    class Meta:
+        model = NYTFull
+
+class NYTFullAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_class = NYTFullResource
+    list_display = ('year', 'week', 'rank', 'title_id', 'title', 'author')
+    search_fields = ('year', 'week', 'rank', 'title_id', 'title', 'author')
+
+admin.site.register(NYTFull, NYTFullAdmin)
+
+class NYTTitleResource(resources.ModelResource):
+
+    class Meta:
+        model = NYTTitle
+
+class NYTTitleAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_class = NYTTitleResource
+    list_display = ('id', 'title', 'author', 'year')
+    search_fields = ('id', 'title', 'author', 'year', 'total_weeks', 'first_week', 'debut_rank', 'best_rank')
+
+admin.site.register(NYTTitle, NYTTitleAdmin)
+
+class NYTHathiResource(resources.ModelResource):
+
+    class Meta:
+        model = NYTHathi
+
+class NYTHathiAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_class = NYTHathiResource
+    list_display = ('htid', 'title_id', 'title', 'author', 'year')
+    search_fields = ('htid', 'title_id', 'title', 'author', 'year', 'first_week', 'debut_rank', 'best_rank')
+
+admin.site.register(NYTHathi, NYTHathiAdmin)

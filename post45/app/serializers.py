@@ -1,4 +1,4 @@
-from .models import Record, ProgramEraRecord, ProgramEraPeople, ProgramEraGraduations, MasterPrizeRecord
+from .models import Record, ProgramEraRecord, ProgramEraPeople, ProgramEraGraduations, MasterPrizeRecord, NYTFull, NYTTitle, NYTHathi
 from rest_framework import serializers
 
 
@@ -33,3 +33,21 @@ class MasterPrizeRecordSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = MasterPrizeRecord
         fields = ['name', 'firstname', 'lastname', 'role', 'prize', 'year', 'genre', 'type', 'amount', 'gender', 'race', 'POCnetwork1', 'POCnetwork2', 'USNWRrank', 'rank', 'ivyflag', 'top50percent', 'harvardflag', 'typeofhighered', 'ba', 'ba2', 'mastersorabove', 'ma', 'ma2', 'mfaflag', 'mfa', 'mfa2', 'phd', 'phd2', 'law', 'med', 'bigfive', 'prizebooktitle', 'careerbooktitle1', 'prizebooktitle2']
+
+class NYTFullSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = NYTFull
+        fields = ['year', 'week', 'rank', 'title_id', 'title', 'author']
+
+class NYTTitleSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = NYTTitle
+        fields = ['id', 'title', 'author', 'year', 'total_weeks', 'first_week', 'debut_rank', 'best_rank']
+
+class NYTHathiSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = NYTHathi
+        fields = ['htid', 'title_id', 'title', 'author', 'year', 'first_week', 'debut_rank', 'best_rank']

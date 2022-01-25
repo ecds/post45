@@ -5,8 +5,8 @@ from django.http import StreamingHttpResponse
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from rest_framework import viewsets
-from .models import Record, ProgramEraRecord, ProgramEraPeople, ProgramEraGraduations, MasterPrizeRecord
-from .serializers import RecordSerializer, ProgramEraRecordSerializer, ProgramEraPeopleSerializer, ProgramEraGraduationsSerializer, MasterPrizeRecordSerializer
+from .models import Record, ProgramEraRecord, ProgramEraPeople, ProgramEraGraduations, MasterPrizeRecord, NYTFull, NYTTitle, NYTHathi
+from .serializers import RecordSerializer, ProgramEraRecordSerializer, ProgramEraPeopleSerializer, ProgramEraGraduationsSerializer, MasterPrizeRecordSerializer, NYTFullSerializer, NYTTitleSerializer, NYTHathiSerializer
 from htrc_features import utils
 
 
@@ -25,6 +25,15 @@ def programeragraduations(request):
 @login_required(login_url='/accounts/login/')
 def masterprize(request):
     return render(request, 'app/masterprize.html')
+
+def nytfull(request):
+    return render(request, 'app/nytfull.html')
+
+def nyttitle(request):
+    return render(request, 'app/nyttitle.html')
+
+def nythathi(request):
+    return render(request, 'app/nythathi.html')
 
 def about(request):
     return render(request, 'app/about.html')
@@ -292,4 +301,134 @@ class MasterPrizeRecordExportCsvView(View):
             (writer.writerow(row) for row in stream(headers, records_qs)),
             content_type="text/csv")
         response['Content-Disposition'] = 'attachment; filename="masterprize.tsv"'
+        return response
+
+class NYTFullViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = NYTFull.objects.all().order_by('year')
+    serializer_class = NYTFullSerializer
+
+class NYTFullExportCsvView(View):
+    def get(self, request, *args, **kwargs):
+        records_qs =  NYTFull.objects.all()
+        model = records_qs.model
+        model_fields = model._meta.fields + model._meta.many_to_many
+        exclude_fields = ['id',]
+        model_fields = [x for x in model_fields if x.name not in exclude_fields]
+        headers = [field.name for field in model_fields] # Create CSV headers
+        def get_row(obj):
+            row = []
+            for field in model_fields:
+                if type(field) == models.ForeignKey:
+                    val = getattr(obj, field.name)
+                    if val:
+                        val = val.__unicode__()
+                elif type(field) == models.ManyToManyField:
+                    val = u', '.join([item.__unicode__() for item in getattr(obj, field.name).all()])
+                elif field.choices:
+                    val = getattr(obj, 'get_%s_display'%field.name)()
+                else:
+                    val = getattr(obj, field.name)
+                #row.append(str(val).encode("utf-8"))
+                row.append(str(val)) # Doing it this way removes enclosing quotes and preceding "b"
+            return row
+        def stream(headers, data): # Helper function to inject headers
+            if headers:
+                yield headers
+            for obj in data:
+                yield get_row(obj)
+        pseudo_buffer = Echo()
+        writer = csv.writer(pseudo_buffer, delimiter="\t")
+        response = StreamingHttpResponse(
+            (writer.writerow(row) for row in stream(headers, records_qs)),
+            content_type="text/csv")
+        response['Content-Disposition'] = 'attachment; filename="nyt_full.tsv"'
+        return response
+
+class NYTTitleViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = NYTTitle.objects.all().order_by('id')
+    serializer_class = NYTTitleSerializer
+
+class NYTTitleExportCsvView(View):
+    def get(self, request, *args, **kwargs):
+        records_qs =  NYTTitle.objects.all()
+        model = records_qs.model
+        model_fields = model._meta.fields + model._meta.many_to_many
+        headers = [field.name for field in model_fields] # Create CSV headers
+        def get_row(obj):
+            row = []
+            for field in model_fields:
+                if type(field) == models.ForeignKey:
+                    val = getattr(obj, field.name)
+                    if val:
+                        val = val.__unicode__()
+                elif type(field) == models.ManyToManyField:
+                    val = u', '.join([item.__unicode__() for item in getattr(obj, field.name).all()])
+                elif field.choices:
+                    val = getattr(obj, 'get_%s_display'%field.name)()
+                else:
+                    val = getattr(obj, field.name)
+                #row.append(str(val).encode("utf-8"))
+                row.append(str(val)) # Doing it this way removes enclosing quotes and preceding "b"
+            return row
+        def stream(headers, data): # Helper function to inject headers
+            if headers:
+                yield headers
+            for obj in data:
+                yield get_row(obj)
+        pseudo_buffer = Echo()
+        writer = csv.writer(pseudo_buffer, delimiter="\t")
+        response = StreamingHttpResponse(
+            (writer.writerow(row) for row in stream(headers, records_qs)),
+            content_type="text/csv")
+        response['Content-Disposition'] = 'attachment; filename="nyt_titles.tsv"'
+        return response
+
+class NYTHathiViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = NYTHathi.objects.all().order_by('htid')
+    serializer_class = NYTHathiSerializer
+
+class NYTHathiExportCsvView(View):
+    def get(self, request, *args, **kwargs):
+        records_qs =  NYTHathi.objects.all()
+        model = records_qs.model
+        model_fields = model._meta.fields + model._meta.many_to_many
+        exclude_fields = ['id',]
+        model_fields = [x for x in model_fields if x.name not in exclude_fields]
+        headers = [field.name for field in model_fields] # Create CSV headers
+        def get_row(obj):
+            row = []
+            for field in model_fields:
+                if type(field) == models.ForeignKey:
+                    val = getattr(obj, field.name)
+                    if val:
+                        val = val.__unicode__()
+                elif type(field) == models.ManyToManyField:
+                    val = u', '.join([item.__unicode__() for item in getattr(obj, field.name).all()])
+                elif field.choices:
+                    val = getattr(obj, 'get_%s_display'%field.name)()
+                else:
+                    val = getattr(obj, field.name)
+                #row.append(str(val).encode("utf-8"))
+                row.append(str(val)) # Doing it this way removes enclosing quotes and preceding "b"
+            return row
+        def stream(headers, data): # Helper function to inject headers
+            if headers:
+                yield headers
+            for obj in data:
+                yield get_row(obj)
+        pseudo_buffer = Echo()
+        writer = csv.writer(pseudo_buffer, delimiter="\t")
+        response = StreamingHttpResponse(
+            (writer.writerow(row) for row in stream(headers, records_qs)),
+            content_type="text/csv")
+        response['Content-Disposition'] = 'attachment; filename="hathi_volumes.tsv"'
         return response

@@ -87,6 +87,45 @@ class ProgramEraGraduations(models.Model):
     def __str__(self):
         return self.record_id
 
+
+class NYTFull(models.Model):
+    year = models.CharField(max_length=255, blank=True, null=True)
+    week = models.CharField(max_length=255, blank=True, null=True)
+    rank = models.CharField(max_length=255, blank=True, null=True)
+    title_id = models.CharField(max_length=255, blank=True, null=True)
+    title = models.CharField(max_length=255, blank=True, null=True)
+    author = models.CharField(max_length=255, blank=True, null=True)
+
+    def __str__(self):
+        return self.title_id
+
+
+class NYTTitle(models.Model):
+    id = models.CharField(primary_key=True, max_length=255)
+    title = models.CharField(max_length=255, blank=True, null=True)
+    author = models.CharField(max_length=255, blank=True, null=True)
+    year = models.CharField(max_length=255, blank=True, null=True)
+    total_weeks = models.CharField(max_length=255, blank=True, null=True)
+    first_week = models.CharField(max_length=255, blank=True, null=True)
+    debut_rank = models.CharField(max_length=255, blank=True, null=True)
+    best_rank = models.CharField(max_length=255, blank=True, null=True)
+
+    def __str__(self):
+        return self.id
+
+class NYTHathi(models.Model):
+    htid = models.CharField(max_length=255, blank=True, null=True)
+    title_id = models.CharField(max_length=255, blank=True, null=True)
+    title = models.CharField(max_length=255, blank=True, null=True)
+    author = models.CharField(max_length=255, blank=True, null=True)
+    year = models.CharField(max_length=255, blank=True, null=True)
+    first_week = models.CharField(max_length=255, blank=True, null=True)
+    debut_rank = models.CharField(max_length=255, blank=True, null=True)
+    best_rank = models.CharField(max_length=255, blank=True, null=True)
+
+    def __str__(self):
+        return self.htid
+
 '''
 name	firstname	lastname	role	prize	year	genre	type	amount	gender	race	POCnetwork1	POCnetwork2	USNWRrank		ivyflag	top50%	harvardflag	typeofhighered	ba	ba2	mastersorabove	ma	ma2	mfaflag	mfa	mfa2	phd	phd2	law	med	bigfive	prizebooktitle	careerbooktitle1		prizebooktitle2
 '''
