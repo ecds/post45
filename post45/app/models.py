@@ -89,9 +89,9 @@ class ProgramEraGraduations(models.Model):
 
 
 class NYTFull(models.Model):
-    year = models.CharField(max_length=255, blank=True, null=True)
+    year = models.PositiveIntegerField(blank=True, null=True)
     week = models.CharField(max_length=255, blank=True, null=True)
-    rank = models.CharField(max_length=255, blank=True, null=True)
+    rank = models.PositiveIntegerField(blank=True, null=True)
     title_id = models.CharField(max_length=255, blank=True, null=True)
     title = models.CharField(max_length=255, blank=True, null=True)
     author = models.CharField(max_length=255, blank=True, null=True)
@@ -104,11 +104,11 @@ class NYTTitle(models.Model):
     id = models.CharField(primary_key=True, max_length=255)
     title = models.CharField(max_length=255, blank=True, null=True)
     author = models.CharField(max_length=255, blank=True, null=True)
-    year = models.CharField(max_length=255, blank=True, null=True)
-    total_weeks = models.CharField(max_length=255, blank=True, null=True)
+    year = models.PositiveIntegerField(blank=True, null=True)
+    total_weeks = models.PositiveIntegerField(blank=True, null=True)
     first_week = models.CharField(max_length=255, blank=True, null=True)
-    debut_rank = models.CharField(max_length=255, blank=True, null=True)
-    best_rank = models.CharField(max_length=255, blank=True, null=True)
+    debut_rank = models.PositiveIntegerField(blank=True, null=True)
+    best_rank = models.PositiveIntegerField(blank=True, null=True)
 
     def __str__(self):
         return self.id
@@ -118,10 +118,10 @@ class NYTHathi(models.Model):
     title_id = models.CharField(max_length=255, blank=True, null=True)
     title = models.CharField(max_length=255, blank=True, null=True)
     author = models.CharField(max_length=255, blank=True, null=True)
-    year = models.CharField(max_length=255, blank=True, null=True)
+    year = models.PositiveIntegerField(blank=True, null=True)
     first_week = models.CharField(max_length=255, blank=True, null=True)
-    debut_rank = models.CharField(max_length=255, blank=True, null=True)
-    best_rank = models.CharField(max_length=255, blank=True, null=True)
+    debut_rank = models.PositiveIntegerField(blank=True, null=True)
+    best_rank = models.PositiveIntegerField(blank=True, null=True)
 
     def __str__(self):
         return self.htid
