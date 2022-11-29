@@ -21,6 +21,19 @@
       overflow-y: auto;
       white-space:pre-wrap;
   }
+  table.dataTable thead .sorting_asc {
+  background: url("http://cdn.datatables.net/1.10.0/images/sort_asc.png") no-repeat center left;
+}
+table.dataTable thead .sorting_desc {
+  background: url("http://cdn.datatables.net/1.10.0/images/sort_desc.png") no-repeat center left;
+}
+table.dataTable thead .sorting {
+  background: url("http://cdn.datatables.net/1.10.0/images/sort_both.png") no-repeat center left;
+}
+
+     table.dataTable.compact thead th, table.dataTable.compact thead td {
+    padding: 10px 18px;
+}
 </style>
 </head>
 
@@ -40,7 +53,7 @@
 <p>Table of Iowa graduates between 1931 and Spring 2014 that includes graduate name, advisor name, year of matriculation, program, degree, thesis title, and literary genre.</p>
 <p>To download the full dataset in a tab-delimited file, <a href="{% url 'programeragraduationsdownload' %}">click here.</a></p>
 
-<table id="record-table" class="stripe hover compact row-border" data-server-side="true" data-ajax="programeragraduations/?format=datatables">
+<table id="record-table" class="stripe hover compact row-border dataTable" data-server-side="true" data-ajax="programeragraduations/?format=datatables">
   <thead>
     <tr>
     <th data-data="record_id">record_id <a href="#" data-toggle="popover" title="Definition" data-content="Numeric unique id of the graduation record in this database"><i class="bi bi-question-circle"></i></a></th>

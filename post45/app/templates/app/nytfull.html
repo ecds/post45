@@ -21,6 +21,19 @@
       overflow-y: auto;
       white-space:pre-wrap;
   }
+  table.dataTable thead .sorting_asc {
+  background: url("http://cdn.datatables.net/1.10.0/images/sort_asc.png") no-repeat center left;
+}
+table.dataTable thead .sorting_desc {
+  background: url("http://cdn.datatables.net/1.10.0/images/sort_desc.png") no-repeat center left;
+}
+table.dataTable thead .sorting {
+  background: url("http://cdn.datatables.net/1.10.0/images/sort_both.png") no-repeat center left;
+}
+
+     table.dataTable.compact thead th, table.dataTable.compact thead td {
+    padding: 10px 18px;
+}
 </style>
 
 </head>
@@ -41,7 +54,7 @@
 <p>The fiction bestseller list of The New York Times between the years of 1931 and 2020. Each row of the dataset is a single “entry” on the list, that is, a single slot for a single week. Altogether, the dataset features just over 60,000 rows.</p>
 <p>To download the full dataset in a tab-delimited file, <a href="{% url 'nytfulldownload' %}">click here.</a></p>
 
-<table id="record-table" class="stripe hover row-border" data-server-side="true" data-ajax="nytfulldata/?format=datatables">
+<table id="record-table" class="stripe hover row-border dataTable" data-server-side="true" data-ajax="nytfulldata/?format=datatables">
   <thead>
     <tr>
     <th data-data="year">year <a href="#" data-toggle="popover" title="Definition" data-content="the year of appearance"><i class="bi bi-question-circle"></i></a></th>
