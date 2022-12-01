@@ -1,4 +1,4 @@
-from .models import Record, ProgramEraRecord, ProgramEraPeople, ProgramEraGraduations, MasterPrizeRecord, NYTFull, NYTTitle, NYTHathi
+from .models import Record, ProgramEraRecord, ProgramEraPeople, ProgramEraGraduations, MasterPrizeRecord, NYTFull, NYTTitle, NYTHathi, MLPWinners, MLPHathi
 from rest_framework import serializers
 
 
@@ -51,3 +51,16 @@ class NYTHathiSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = NYTHathi
         fields = ['htid', 'title_id', 'title', 'author', 'year', 'first_week', 'debut_rank', 'best_rank']
+
+class MLPWinnersSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = MLPWinners
+        fields = ['person_id', 'full_name', 'given_name', 'last_name', 'gender', 'elite_institution', 'graduate_degree', 'mfa_degree', 'iowa_mfa_person_id', 'stegner', 'role', 'prize_institution', 'prize_name', 'prize_year', 'prize_genre', 'prize_type', 'prize_amount', 'title_of_winning_book']
+
+
+class MLPHathiSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = MLPHathi
+        fields = ['hathi_id', 'shorttitle', 'prize', 'author', 'person_id', 'inferreddate', 'imprintdate', 'oclc', 'full_name', 'given_name', 'last_name', 'gender']

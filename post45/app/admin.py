@@ -2,7 +2,7 @@ from django.contrib import admin
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 from admin_numeric_filter.admin import NumericFilterModelAdmin, SingleNumericFilter, RangeNumericFilter, SliderNumericFilter
-from .models import Record, ProgramEraRecord, ProgramEraPeople, ProgramEraGraduations, MasterPrizeRecord, NYTFull, NYTTitle, NYTHathi
+from .models import Record, ProgramEraRecord, ProgramEraPeople, ProgramEraGraduations, MasterPrizeRecord, NYTFull, NYTTitle, NYTHathi, MLPWinners, MLPHathi
 
 
 class RecordResource(resources.ModelResource):
@@ -113,3 +113,27 @@ class NYTHathiAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     search_fields = ('htid', 'title_id', 'title', 'author', 'year', 'first_week', 'debut_rank', 'best_rank')
 
 admin.site.register(NYTHathi, NYTHathiAdmin)
+
+class MLPWinnersResource(resources.ModelResource):
+
+    class Meta:
+        model = MLPWinners
+
+class MLPWinnersAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_class = MLPWinnersResource
+    list_display = ('person_id', 'full_name')
+    search_fields = ('person_id', 'full_name', 'given_name', 'last_name', 'gender', 'elite_institution', 'graduate_degree', 'mfa_degree', 'iowa_mfa_person_id', 'stegner', 'role', 'prize_institution', 'prize_name', 'prize_year', 'prize_genre', 'prize_type', 'prize_amount', 'title_of_winning_book')
+
+admin.site.register(MLPWinners, MLPWinnersAdmin)
+
+class MLPHathiResource(resources.ModelResource):
+
+    class Meta:
+        model = MLPHathi
+
+class MLPHathiAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    resource_class = MLPHathiResource
+    list_display = ('hathi_id', 'shorttitle')
+    search_fields = ('hathi_id', 'shorttitle', 'prize', 'author', 'person_id', 'inferreddate', 'imprintdate', 'oclc', 'full_name', 'given_name', 'last_name', 'gender')
+
+admin.site.register(MLPHathi, MLPHathiAdmin)

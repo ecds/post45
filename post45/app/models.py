@@ -126,6 +126,46 @@ class NYTHathi(models.Model):
     def __str__(self):
         return self.htid
 
+class MLPWinners(models.Model):
+    person_id = models.PositiveIntegerField(blank=True, null=True)
+    full_name = models.CharField(max_length=255, blank=True, null=True)
+    given_name = models.CharField(max_length=255, blank=True, null=True)
+    last_name = models.CharField(max_length=255, blank=True, null=True)
+    gender = models.CharField(max_length=255, blank=True, null=True)
+    elite_institution = models.CharField(max_length=255, blank=True, null=True)
+    graduate_degree = models.CharField(max_length=255, blank=True, null=True)
+    mfa_degree = models.CharField(max_length=255, blank=True, null=True)
+    iowa_mfa_person_id = models.CharField(max_length=255, blank=True, null=True)
+    stegner = models.CharField(max_length=255, blank=True, null=True)
+    role = models.CharField(max_length=255, blank=True, null=True)
+    prize_institution = models.CharField(max_length=255, blank=True, null=True)
+    prize_name = models.CharField(max_length=255, blank=True, null=True)
+    prize_year = models.PositiveIntegerField(blank=True, null=True)
+    prize_genre = models.CharField(max_length=255, blank=True, null=True)
+    prize_type = models.CharField(max_length=255, blank=True, null=True)
+    prize_amount = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
+    title_of_winning_book = models.CharField(max_length=255, blank=True, null=True)
+
+    def __str__(self):
+        return self.full_name
+
+class MLPHathi(models.Model):
+    hathi_id = models.CharField(max_length=255, blank=True, null=True)
+    shorttitle = models.CharField(max_length=255, blank=True, null=True)
+    prize = models.CharField(max_length=255, blank=True, null=True)
+    author = models.CharField(max_length=255, blank=True, null=True)
+    person_id = models.PositiveIntegerField(blank=True, null=True)
+    inferreddate = models.CharField(max_length=255, blank=True, null=True)
+    imprintdate = models.CharField(max_length=255, blank=True, null=True)
+    oclc = models.CharField(max_length=255, blank=True, null=True)
+    full_name = models.CharField(max_length=255, blank=True, null=True)
+    given_name = models.CharField(max_length=255, blank=True, null=True)
+    last_name = models.CharField(max_length=255, blank=True, null=True)
+    gender = models.CharField(max_length=255, blank=True, null=True)
+
+    def __str__(self):
+        return self.hathi_id
+
 '''
 name	firstname	lastname	role	prize	year	genre	type	amount	gender	race	POCnetwork1	POCnetwork2	USNWRrank		ivyflag	top50%	harvardflag	typeofhighered	ba	ba2	mastersorabove	ma	ma2	mfaflag	mfa	mfa2	phd	phd2	law	med	bigfive	prizebooktitle	careerbooktitle1		prizebooktitle2
 '''

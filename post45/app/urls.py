@@ -14,4 +14,6 @@ urlpatterns = [
     path('nytfull', views.nytfull, name="nytfull"),
     path('nyttitle', views.nyttitle, name="nyttitle"),
     path('nythathi', views.nythathi, name="nythathi"),
+    path('mlpwinnders', views.mlpwinners, name="mlpwinners"),
+    path('mlphathi', views.mlphathi, name="mlphathi")
 ]

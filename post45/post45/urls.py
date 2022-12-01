@@ -28,6 +28,8 @@ router.register(r'masterprizedata', views.MasterPrizeRecordViewSet)
 router.register(r'nytfulldata', views.NYTFullViewSet)
 router.register(r'nyttitledata', views.NYTTitleViewSet)
 router.register(r'nythathidata', views.NYTHathiViewSet)
+router.register(r'mlpwinnersdata', views.MLPWinnersViewSet)
+router.register(r'mlpwinnersdata', views.MLPHathiViewSet)
 
 urlpatterns = [
     url(r'^', include('app.urls')),
@@ -40,6 +42,8 @@ urlpatterns = [
     url(r'^nytfulldata/$', views.NYTFullViewSet.as_view({'get': 'list'}), name='nytfulldata'),
     url(r'^nyttitledata/$', views.NYTTitleViewSet.as_view({'get': 'list'}), name='nyttitledata'),
     url(r'^nythathidata/$', views.NYTHathiViewSet.as_view({'get': 'list'}), name='nythathidata'),
+    url(r'^mlpwinnersdata/$', views.MLPWinnersViewSet.as_view({'get': 'list'}), name='mlpwinnersdata'),
+    url(r'^mlphathidata/$', views.MLPHathiViewSet.as_view({'get': 'list'}), name='mlphathidata'),
     path(r'^api/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^download/', views.RecordExportCsvView.as_view(), name="download"),
     url(r'^programerarecordsdownload/', views.ProgramEraRecordExportCsvView.as_view(), name="programerarecordsdownload"),
@@ -49,6 +53,8 @@ urlpatterns = [
     url(r'^nytfulldownload/', views.NYTFullExportCsvView.as_view(), name="nytfulldownload"),
     url(r'^nyttitledownload/', views.NYTTitleExportCsvView.as_view(), name="nyttitledownload"),
     url(r'^nythathidownload/', views.NYTHathiExportCsvView.as_view(), name="nythathidownload"),
+    url(r'^mlpwinnersdownload/', views.MLPWinnersExportCsvView.as_view(), name="mlpwinnersdownload"),
+    url(r'^mlphathidownload/', views.MLPHathiExportCsvView.as_view(), name="mlphathidownload"),
     path('accounts/', include('django.contrib.auth.urls')),
 
 ]

@@ -5,8 +5,8 @@ from django.http import StreamingHttpResponse
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from rest_framework import viewsets
-from .models import Record, ProgramEraRecord, ProgramEraPeople, ProgramEraGraduations, MasterPrizeRecord, NYTFull, NYTTitle, NYTHathi
-from .serializers import RecordSerializer, ProgramEraRecordSerializer, ProgramEraPeopleSerializer, ProgramEraGraduationsSerializer, MasterPrizeRecordSerializer, NYTFullSerializer, NYTTitleSerializer, NYTHathiSerializer
+from .models import Record, ProgramEraRecord, ProgramEraPeople, ProgramEraGraduations, MasterPrizeRecord, NYTFull, NYTTitle, NYTHathi, MLPWinners, MLPHathi
+from .serializers import RecordSerializer, ProgramEraRecordSerializer, ProgramEraPeopleSerializer, ProgramEraGraduationsSerializer, MasterPrizeRecordSerializer, NYTFullSerializer, NYTTitleSerializer, NYTHathiSerializer, MLPWinnersSerializer, MLPHathiSerializer
 from htrc_features import utils
 
 
@@ -34,6 +34,12 @@ def nyttitle(request):
 
 def nythathi(request):
     return render(request, 'app/nythathi.html')
+
+def mlpwinners(request):
+    return render(request, 'app/mlpwinners.html')
+
+def mlphathi(request):
+    return render(request, 'app/mlphathi.html')
 
 def about(request):
     return render(request, 'app/about.html')
@@ -431,4 +437,92 @@ class NYTHathiExportCsvView(View):
             (writer.writerow(row) for row in stream(headers, records_qs)),
             content_type="text/csv")
         response['Content-Disposition'] = 'attachment; filename="hathi_volumes.tsv"'
+        return response
+
+class MLPWinnersViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = MLPWinners.objects.all().order_by('person_id')
+    serializer_class = MLPWinnersSerializer
+
+class MLPWinnersExportCsvView(View):
+    def get(self, request, *args, **kwargs):
+        records_qs =  MLPWinners.objects.all()
+        model = records_qs.model
+        model_fields = model._meta.fields + model._meta.many_to_many
+        exclude_fields = ['id',]
+        model_fields = [x for x in model_fields if x.name not in exclude_fields]
+        headers = [field.name for field in model_fields] # Create CSV headers
+        def get_row(obj):
+            row = []
+            for field in model_fields:
+                if type(field) == models.ForeignKey:
+                    val = getattr(obj, field.name)
+                    if val:
+                        val = val.__unicode__()
+                elif type(field) == models.ManyToManyField:
+                    val = u', '.join([item.__unicode__() for item in getattr(obj, field.name).all()])
+                elif field.choices:
+                    val = getattr(obj, 'get_%s_display'%field.name)()
+                else:
+                    val = getattr(obj, field.name)
+                #row.append(str(val).encode("utf-8"))
+                row.append(str(val)) # Doing it this way removes enclosing quotes and preceding "b"
+            return row
+        def stream(headers, data): # Helper function to inject headers
+            if headers:
+                yield headers
+            for obj in data:
+                yield get_row(obj)
+        pseudo_buffer = Echo()
+        writer = csv.writer(pseudo_buffer, delimiter="\t")
+        response = StreamingHttpResponse(
+            (writer.writerow(row) for row in stream(headers, records_qs)),
+            content_type="text/csv")
+        response['Content-Disposition'] = 'attachment; filename="winnersandjudges.tsv"'
+        return response
+
+class MLPHathiViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = MLPHathi.objects.all().order_by('hathi_id')
+    serializer_class = MLPHathiSerializer
+
+class MLPHathiExportCsvView(View):
+    def get(self, request, *args, **kwargs):
+        records_qs =  MLPHathi.objects.all()
+        model = records_qs.model
+        model_fields = model._meta.fields + model._meta.many_to_many
+        exclude_fields = ['id',]
+        model_fields = [x for x in model_fields if x.name not in exclude_fields]
+        headers = [field.name for field in model_fields] # Create CSV headers
+        def get_row(obj):
+            row = []
+            for field in model_fields:
+                if type(field) == models.ForeignKey:
+                    val = getattr(obj, field.name)
+                    if val:
+                        val = val.__unicode__()
+                elif type(field) == models.ManyToManyField:
+                    val = u', '.join([item.__unicode__() for item in getattr(obj, field.name).all()])
+                elif field.choices:
+                    val = getattr(obj, 'get_%s_display'%field.name)()
+                else:
+                    val = getattr(obj, field.name)
+                #row.append(str(val).encode("utf-8"))
+                row.append(str(val)) # Doing it this way removes enclosing quotes and preceding "b"
+            return row
+        def stream(headers, data): # Helper function to inject headers
+            if headers:
+                yield headers
+            for obj in data:
+                yield get_row(obj)
+        pseudo_buffer = Echo()
+        writer = csv.writer(pseudo_buffer, delimiter="\t")
+        response = StreamingHttpResponse(
+            (writer.writerow(row) for row in stream(headers, records_qs)),
+            content_type="text/csv")
+        response['Content-Disposition'] = 'attachment; filename="hathitrust_prizewinners.tsv"'
         return response

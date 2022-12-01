@@ -1,0 +1,255 @@
+<head>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<style>
+  .popover-content {
+      width: 250px;
+      height: 200px;
+      overflow-y: auto;
+      white-space:pre-wrap;
+  }
+  table.dataTable thead .sorting_asc {
+  background: url("http://cdn.datatables.net/1.10.0/images/sort_asc.png") no-repeat center left;
+}
+table.dataTable thead .sorting_desc {
+  background: url("http://cdn.datatables.net/1.10.0/images/sort_desc.png") no-repeat center left;
+}
+table.dataTable thead .sorting {
+  background: url("http://cdn.datatables.net/1.10.0/images/sort_both.png") no-repeat center left;
+}
+
+     table.dataTable.compact thead th, table.dataTable.compact thead td {
+    padding: 10px 18px;
+}
+</style>
+
+</head>
+
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="{% url 'about' %}">Post45 Data</a>
+      </div>
+      <!-- <ul class="nav navbar-nav">
+        <li class="active"><a href="/about">About</a></li>
+      </ul> -->
+    </div>
+  </nav>
+<div class="container-fluid">
+<h1>Major Literary Prizes: Winners and Judges</h1>
+<p>Dataset of the winners and judges of prizes for prose, poetry, or unspecified genre between 1918 and 2020 with a purse of $10,000 and over. </p>
+<p>To download the full dataset in a tab-delimited file, <a href="{% url 'mlpwinnersdownload' %}">click here.</a></p>
+
+<table id="record-table" class="stripe hover row-border dataTable" data-server-side="true" data-ajax="mlpwinnersdata/?format=datatables">
+  <thead>
+    <tr>
+    <th data-data="person_id">person_id <a href="#" data-toggle="popover" title="Definition" data-content=""><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="full_name">full_name <a href="#" data-toggle="popover" title="Definition" data-content=""><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="given_name">given_name <a href="#" data-toggle="popover" title="Definition" data-content=""><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="last_name">last_name <a href="#" data-toggle="popover" title="Definition" data-content=""><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="gender">gender <a href="#" data-toggle="popover" title="Definition" data-content=""><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="elite_institution">elite_institution <a href="#" data-toggle="popover" title="Definition" data-content=""><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="graduate_degree">graduate_degree <a href="#" data-toggle="popover" title="Definition" data-content=""><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="mfa_degree">mfa_degree <a href="#" data-toggle="popover" title="Definition" data-content=""><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="iowa_mfa_person_id">iowa_mfa_person_id <a href="#" data-toggle="popover" title="Definition" data-content=""><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="stegner">stegner <a href="#" data-toggle="popover" title="Definition" data-content=""><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="role">role <a href="#" data-toggle="popover" title="Definition" data-content=""><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="prize_institution">prize_institution <a href="#" data-toggle="popover" title="Definition" data-content=""><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="prize_name">prize_name <a href="#" data-toggle="popover" title="Definition" data-content=""><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="prize_year">prize_year <a href="#" data-toggle="popover" title="Definition" data-content=""><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="prize_genre">prize_genre <a href="#" data-toggle="popover" title="Definition" data-content=""><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="prize_type">prize_type <a href="#" data-toggle="popover" title="Definition" data-content=""><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="prize_amount">prize_amount <a href="#" data-toggle="popover" title="Definition" data-content=""><i class="bi bi-question-circle"></i></a></th>
+
+    <th data-data="title_of_winning_book">title_of_winning_book <a href="#" data-toggle="popover" title="Definition" data-content=""><i class="bi bi-question-circle"></i></a></th>
+
+    </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>person_id</th>
+                <th>full_name</th>
+                <th>given_name</th>
+                <th>last_name</th>
+                <th>gender</th>
+                <th>elite_institution</th>
+                <th>graduate_degree</th>
+                <th>mfa_degree</th>
+                <th>iowa_mfa_person_id</th>
+                <th>stegner</th>
+                <th>role</th>
+                <th>prize_institution</th>
+                <th>prize_name</th>
+                <th>prize_year</th>
+                <th>prize_genre</th>
+                <th>prize_type</th>
+                <th>prize_amount</th>
+                <th>title_of_winning_book</th>
+          </tr>
+          </tfoot>
+</table>
+</div>
+</body>
+<script>
+
+    $(document).ready(function() {
+      // Setup - add a text input to each footer cell
+       $('#record-table tfoot th').each( function () {
+           var title = $(this).text();
+           $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+       } );
+
+    // DataTable
+    var table = $('#record-table').DataTable( {
+
+      //dom: 'lBfrtip',
+      ajax: '/mlpwinnersdata/?format=datatables',
+     //  buttons: [
+     //      {
+     //        extend: 'csv',
+     //        text: 'Download full dataset',
+     //        fieldSeparator: '\t',
+     //        fieldBoundary: '',
+     //        extension: '.tsv',
+     //        action: function (e, dt, button, config)
+     //                {
+     //                    dt.one('preXhr', function (e, s, data)
+     //                    {
+     //                        data.length = -1;
+     //                    }).one('draw', function (e, settings, json, xhr)
+     //                    {
+     //                        var excelButtonConfig = $.fn.DataTable.ext.buttons.excelHtml5;
+     //                        var addOptions = { exportOptions: { 'columns': ':all'} };
+     //
+     //                        $.extend(true, excelButtonConfig, addOptions);
+     //                        excelButtonConfig.action(e, dt, button, excelButtonConfig);
+     //                    }).draw();
+     //                }
+     //      },
+     //     {
+     //         extend: 'csv',
+     //         text: 'Download filtered dataset',
+     //         fieldSeparator: '\t',
+     //         fieldBoundary: '',
+     //         extension: '.tsv',
+     //         action: newExportAction,
+     //         exportOptions: {
+     //            modifier: {
+     //              search: 'applied',
+     //              order: 'applied'
+     //            }
+     //        }
+     //     }
+     // ],
+
+    "iDisplayLength": 10,
+
+    orderCellsTop: true,
+
+    "columnDefs": [
+            // {
+            //     "targets": [1, 4, 5, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,  22, 23, 24, 25, 26],
+            //     "visible": false,
+            //     "searchable": false
+            // },
+        ]
+  } );
+
+  // Apply the search
+    table.columns().every( function () {
+        var that = this;
+
+        $( 'input', this.footer() ).on( 'keyup change clear', function () {
+            if ( that.search() !== this.value ) {
+                that
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    } );
+} );
+
+
+// https://stackoverflow.com/a/44635032/2402028
+var oldExportAction = function (self, e, dt, button, config) {
+    if (button[0].className.indexOf('buttons-csv') >= 0) {
+        if ($.fn.dataTable.ext.buttons.csvHtml5.available(dt, config)) {
+            $.fn.dataTable.ext.buttons.csvHtml5.action.call(self, e, dt, button, config);
+        }
+        else {
+            $.fn.dataTable.ext.buttons.csvFlash.action.call(self, e, dt, button, config);
+        }
+    } else if (button[0].className.indexOf('buttons-print') >= 0) {
+        $.fn.dataTable.ext.buttons.print.action(e, dt, button, config);
+    }
+};
+
+var newExportAction = function (e, dt, button, config) {
+    var self = this;
+    var oldStart = dt.settings()[0]._iDisplayStart;
+
+    dt.one('preXhr', function (e, s, data) {
+        // Just this once, load all data from the server...
+        data.start = 0;
+        data.length = 1000000;
+
+        dt.one('preDraw', function (e, settings) {
+            // Call the original action function
+            oldExportAction(self, e, dt, button, config);
+
+            dt.one('preXhr', function (e, s, data) {
+                // DataTables thinks the first item displayed is index 0, but we're not drawing that.
+                // Set the property to what it was before exporting.
+                settings._iDisplayStart = oldStart;
+                data.start = oldStart;
+            });
+
+            // Reload the grid with the original page. Otherwise, API functions like table.cell(this) don't work properly.
+            setTimeout(dt.ajax.reload, 0);
+
+            // Prevent rendering of the full data to the DOM
+            return false;
+        });
+    });
+
+    // Requery the server with the new one-time export settings
+    dt.ajax.reload();
+};
+
+
+  </script>
+  <script>
+$(document).ready(function(){
+  $('[data-toggle="popover"]').popover();
+});
+</script>
