@@ -152,7 +152,6 @@ class MLPWinners(models.Model):
 class MLPHathi(models.Model):
     hathi_id = models.CharField(max_length=255, blank=True, null=True)
     shorttitle = models.CharField(max_length=255, blank=True, null=True)
-    prize = models.CharField(max_length=255, blank=True, null=True)
     author = models.CharField(max_length=255, blank=True, null=True)
     person_id = models.PositiveIntegerField(blank=True, null=True)
     inferreddate = models.CharField(max_length=255, blank=True, null=True)

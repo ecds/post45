@@ -134,6 +134,6 @@ class MLPHathiResource(resources.ModelResource):
 class MLPHathiAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     resource_class = MLPHathiResource
     list_display = ('hathi_id', 'shorttitle')
-    search_fields = ('hathi_id', 'shorttitle', 'prize', 'author', 'person_id', 'inferreddate', 'imprintdate', 'oclc', 'full_name', 'given_name', 'last_name', 'gender')
+    search_fields = ('hathi_id', 'shorttitle', 'author', 'person_id', 'inferreddate', 'imprintdate', 'oclc', 'full_name', 'given_name', 'last_name', 'gender')
 
 admin.site.register(MLPHathi, MLPHathiAdmin)

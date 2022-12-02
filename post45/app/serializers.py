@@ -63,4 +63,4 @@ class MLPHathiSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = MLPHathi
-        fields = ['hathi_id', 'shorttitle', 'prize', 'author', 'person_id', 'inferreddate', 'imprintdate', 'oclc', 'full_name', 'given_name', 'last_name', 'gender']
+        fields = ['hathi_id', 'shorttitle', 'author', 'person_id', 'inferreddate', 'imprintdate', 'oclc', 'full_name', 'given_name', 'last_name', 'gender']
