@@ -42,18 +42,16 @@ table.dataTable thead .sorting {
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="{% url 'about' %}">Post45 Data</a>
-      </div>
-      <!-- <ul class="nav navbar-nav">
-        <li class="active"><a href="/about">About</a></li>
-      </ul> -->
+        <a class="navbar-brand" href="https://data.post45.org/">Post45 Data Collective</a>
+        <a class="navbar-brand" href="/about">Datasets</a>
     </div>
   </nav>
 <div class="container-fluid">
 <h1>Major Literary Prizes: Hathi Trust Prize Winners</h1>
+<p><strong>Authors:</strong> Claire Grossman, Juliana Spahr, and Stephanie Young</p>
 <p>Dataset contains records for volumes in the HathiTrust Digital Library written by authors who won a prize in the prize winners dataset. </p>
 <p>To download the full dataset in a tab-delimited file, <a href="{% url 'mlphathidownload' %}">click here.</a></p>
-<p>To read the dataset's curatorial statement, <a href="https://data.post45.org/wp-content/uploads/2022/12/MajorLiteraryPrizesCuratorial.pdf">click here.</a></p>
+<p>To read the dataset's curatorial statement, <a href="https://data.post45.org/the-index-of-major-literary-prizes-in-the-u-s-curatorial-statement/">click here.</a></p>
 <p>For a related dataset that includes more detailed information about the winners and judges of literary prizes between 1918 and 2020 with a purse of $10,000 and over, <a href="{% url 'mlpwinners' %}">click here.</a></p>
 
 <table id="record-table" class="stripe hover row-border dataTable" data-server-side="true" data-ajax="mlphathidata/?format=datatables">

@@ -42,7 +42,8 @@ table.dataTable thead .sorting {
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="{% url 'about' %}">Post45 Data</a>
+        <a class="navbar-brand" href="https://data.post45.org/">Post45 Data Collective</a>
+        <a class="navbar-brand" href="/about">Datasets</a>
       </div>
       <!-- <ul class="nav navbar-nav">
         <li class="active"><a href="/about">About</a></li>
@@ -51,8 +52,10 @@ table.dataTable thead .sorting {
   </nav>
 <div class="container-fluid">
 <h1>NYT Hardcover Fiction Bestsellers: Lists</h1>
+<p><strong>Author:</strong> Jordan Pruett</p>
 <p>The fiction bestseller list of The New York Times between the years of 1931 and 2020. Each row of the dataset is a single “entry” on the list, that is, a single slot for a single week. Altogether, the dataset features just over 60,000 rows.</p>
 <p>To download the full dataset in a tab-delimited file, <a href="{% url 'nytfulldownload' %}">click here.</a></p>
+<p>To read the dataset's curatorial statement, <a href="https://data.post45.org/new-york-times-hardcover-fiction-bestsellers-1931-2020-curatorial-statement/">click here.</a></p>
 
 <table id="record-table" class="stripe hover row-border dataTable" data-server-side="true" data-ajax="nytfulldata/?format=datatables">
   <thead>

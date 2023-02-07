@@ -42,7 +42,8 @@ table.dataTable thead .sorting {
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="{% url 'about' %}">Post45 Data</a>
+        <a class="navbar-brand" href="https://data.post45.org/">Post45 Data Collective</a>
+        <a class="navbar-brand" href="/about">Datasets</a>
       </div>
       <!-- <ul class="nav navbar-nav">
         <li class="active"><a href="/about">About</a></li>
@@ -51,9 +52,10 @@ table.dataTable thead .sorting {
   </nav>
 <div class="container-fluid">
 <h1>Iowa Writers' Workshop: Corpus</h1>
+<p><strong>Authors:</strong> Nicholas Kelly, Nicole White, Loren Glass</p>
 <p>A table with titles by notable Iowa Writers' Workshop authors that are held by HathiTrust.</p>
 <p>To download the full dataset in a tab-delimited file, <a href="{% url 'programerarecordsdownload' %}">click here.</a></p>
-
+<p>To read the dataset's curatorial statement, <a href="https://data.post45.org/iowa-writers-workshop-the-program-era-project-curatorial-statement/">click here.</a></p>
 <table id="record-table" class="stripe hover row-border dataTable" data-server-side="true" data-ajax="programerarecords/?format=datatables">
   <thead>
     <tr>
